@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.profile.ProfileFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="32dp">
+
+        <!-- Toolbar -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_back">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/text_title_toolbar_profile"
+                android:textColor="@color/palavras"
+                android:paddingVertical="16dp" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp">
+
+            <ImageView
+                android:id="@+id/imageProfile"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:backgroundTint="#CFE6C7"
+                android:padding="20dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_foto_perfil" />
+
+            <ImageView
+                android:id="@+id/iconEditProfile"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignRight="@id/imageProfile"
+                android:layout_alignBottom="@id/imageProfile"
+                android:layout_marginRight="17dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/white_circle_profile"
+                android:elevation="6dp"
+                android:padding="6dp"
+                android:src="@drawable/ic_perfil_lapis" />
+
+        </RelativeLayout>
+
+
+        <!-- CAMPOS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="28dp">
+
+            <TextView
+                android:id="@+id/textviewNomeUsuário"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_text"
+                android:textColor="@color/palavras"
+                android:textSize="16sp"
+                android:paddingBottom="6dp" />
+
+            <EditText
+                android:id="@+id/editTextNome"
+                style="@style/EditTextTheme"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="@string/hint_edit_name" />
+
+
+            <TextView
+                android:id="@+id/textviewEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/email_text"
+                android:textColor="@color/palavras"
+                android:textSize="16sp"
+                android:paddingTop="16dp"
+                android:paddingBottom="6dp" />
+
+            <EditText
+                android:id="@+id/editTextEmail"
+                style="@style/EditTextTheme"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="@string/hint_edit_email"
+                android:inputType="textEmailAddress" />
+
+
+            <!-- TÍTULO VESTIBULARES -->
+            <TextView
+                android:id="@+id/tvTituloVestibulares"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Vestibulares de preferência:"
+                android:textColor="@color/palavras"
+                android:textSize="17sp"
+                android:paddingBottom="4dp" />
+
+            <RadioGroup
+                android:id="@+id/rgVestibulares"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/rbEnem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ENEM" />
+
+                <RadioButton
+                    android:id="@+id/rbComvest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Comvest" />
+
+                <RadioButton
+                    android:id="@+id/rbFuvest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fuvest" />
+
+                <RadioButton
+                    android:id="@+id/rbOutro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Outro" />
+            </RadioGroup>
+
+            <!-- BOTÃO -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonCriarconta"
+                style="@style/ButtonTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="@string/text_button_profile_fragment" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
