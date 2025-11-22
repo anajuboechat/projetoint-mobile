@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">MedVest+</string>
+    <string name="hello_blank_fragment">faz alguma coisa, pfv</string>
 
+    <!-- Login -->
     <string name="hint_edit_email">Digite seu e-mail</string>
     <string name="hint_edit_password">Digite sua senha</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_tile_warning">Atenção</string>
     <string name="text_button_warning">Entendi</string>
     <string name="password_empty">Preencha a senha!</string>
@@ -33,10 +34,12 @@
     <string name="text_button_registeraccount_fragment">Criar conta</string>
     <string name="hint_edit_name">Digite o seu nome de usuário</string>
 
+    <!-- Menu -->
     <string name="menu_quimica">Quimica</string>
     <string name="menu_fisica">Fisica</string>
     <string name="menu_biologia">Biologia</string>
 
+    <!-- BottomSheet -->
     <string name="text_button_dialog_confirm_logout">Sair</string>
     <string name="text_title_dialog_confirm_logout">Confirmação</string>
     <string name="text_message_dialog_confirm_logout">Tem certeza que deseja sair?</string>

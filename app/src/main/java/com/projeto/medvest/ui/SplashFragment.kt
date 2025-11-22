@@ -30,9 +30,16 @@ class SplashFragment : Fragment() {
         Handler(Looper.getMainLooper()).postDelayed({checkAuth()},3000)
     }
 
-    private fun checkAuth(){
-        findNavController().navigate(R.id.action_splashFragment_to_authentication)
+    private fun checkAuth() {
+        findNavController().navigate(
+            R.id.action_splashFragment_to_authentication,
+            null,
+            androidx.navigation.NavOptions.Builder()
+                .setPopUpTo(R.id.splashFragment, true) // remove a splash da pilha!
+                .build()
+        )
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

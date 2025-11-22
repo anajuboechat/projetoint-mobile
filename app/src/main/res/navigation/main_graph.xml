@@ -16,7 +16,6 @@
             app:destination="@id/authentication" />
     </fragment>
 
-    <!-- HOME PRINCIPAL COM VIEWPAGER -->
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.projeto.medvest.ui.HomeFragment"
@@ -53,12 +52,17 @@
             android:label="fragment_register"
             tools:layout="@layout/fragment_register" />
 
-        <!-- LOGIN → HOME (global) -->
         <action
             android:id="@+id/action_global_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_autentication"
+            app:destination="@id/authentication"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"/>
     </navigation>
 
 </navigation>
