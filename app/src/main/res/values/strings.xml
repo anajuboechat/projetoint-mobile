@@ -32,4 +32,12 @@
     <string name="text_tela_login_insiradados">Insira seus dados para continuar</string>
     <string name="text_button_registeraccount_fragment">Criar conta</string>
     <string name="hint_edit_name">Digite o seu nome de usuário</string>
+
+    <string name="menu_quimica">Quimica</string>
+    <string name="menu_fisica">Fisica</string>
+    <string name="menu_biologia">Biologia</string>
+
+    <string name="text_button_dialog_confirm_logout">Sair</string>
+    <string name="text_title_dialog_confirm_logout">Confirmação</string>
+    <string name="text_message_dialog_confirm_logout">Tem certeza que deseja sair?</string>
 </resources>

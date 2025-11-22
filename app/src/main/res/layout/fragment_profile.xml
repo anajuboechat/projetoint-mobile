@@ -58,7 +58,7 @@
                 android:background="@drawable/white_circle_profile"
                 android:elevation="6dp"
                 android:padding="6dp"
-                android:src="@drawable/ic_perfil_lapis" />
+                android:src="@drawable/ic_edit" />
 
         </RelativeLayout>
 

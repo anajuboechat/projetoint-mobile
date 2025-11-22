@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="MedVest+"
+            android:text="@string/app_name"
             android:textColor="@color/palavras"
             android:textSize="35sp"
             android:textStyle="bold" />

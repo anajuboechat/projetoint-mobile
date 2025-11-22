@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.projeto.medvest.R
-import com.projeto.medvest.databinding.FragmentHomeBinding
+import com.projeto.medvest.databinding.FragmentMenuBinding
 
-class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+
+class EstudosFragment : Fragment() {
+    private var _binding: FragmentMenuBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -18,9 +19,10 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater,container,false)
+        _binding = FragmentMenuBinding.inflate(inflater,container,false)
         return binding.root
     }
+
 
 
     override fun onDestroyView() {

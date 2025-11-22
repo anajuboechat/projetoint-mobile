@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
     app:startDestination="@id/splashFragment">
 
+    <!-- SPLASH -->
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.projeto.medvest.ui.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_authentication"
             app:destination="@id/authentication" />
     </fragment>
+
+    <!-- HOME PRINCIPAL COM VIEWPAGER -->
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.projeto.medvest.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
-    <navigation android:id="@+id/authentication"
+
+    <!-- AUTH FLOW -->
+    <navigation
+        android:id="@+id/authentication"
         app:startDestination="@id/loginFragment">
+
         <fragment
             android:id="@+id/loginFragment"
             android:name="com.projeto.medvest.ui.auth.LoginFragment"
@@ -33,18 +40,25 @@
                 android:id="@+id/action_loginFragment_to_registerFragment"
                 app:destination="@id/registerFragment" />
         </fragment>
+
         <fragment
             android:id="@+id/recoverAccountFragment"
             android:name="com.projeto.medvest.ui.auth.RecoverAccountFragment"
             android:label="fragment_recover_account"
             tools:layout="@layout/fragment_recover_account" />
+
         <fragment
             android:id="@+id/registerFragment"
             android:name="com.projeto.medvest.ui.auth.RegisterFragment"
             android:label="fragment_register"
             tools:layout="@layout/fragment_register" />
+
+        <!-- LOGIN → HOME (global) -->
         <action
             android:id="@+id/action_global_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </navigation>
+
 </navigation>
