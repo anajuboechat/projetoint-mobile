@@ -7,7 +7,7 @@
     <string name="hint_edit_password">Digite sua senha</string>
 
     <string name="text_tile_warning">Atenção</string>
-    <string name="text_button_warning">Entendi</string>
+    <string name="text_button_warning">Enviar</string>
     <string name="password_empty">Preencha a senha!</string>
     <string name="passord_text">Senha</string>
     <string name="email_empty">Preencha seu email!</string>
@@ -28,11 +28,12 @@
     <string name="text_title_verifyfragment">Verificar a conta</string>
     <string name="text_title_toolbar_recover_account_fragment">Recuperar conta</string>
     <string name="text_title_toolbar_profile">Tela de perfil</string>
-    <string name="text_button_recover_account_fragment">Enviar</string>
+    <string name="text_button_recover_account_fragment">Deseja enviar um link para recuperação de senha?</string>
     <string name="text_tela_login_entrar">Entrar</string>
     <string name="text_tela_login_insiradados">Insira seus dados para continuar</string>
     <string name="text_button_registeraccount_fragment">Criar conta</string>
     <string name="hint_edit_name">Digite o seu nome de usuário</string>
+    <string name="text_logout_profile">Clique aqui para sair da sua conta</string>
 
     <!-- Menu -->
     <string name="menu_quimica">Quimica</string>
@@ -43,4 +44,16 @@
     <string name="text_button_dialog_confirm_logout">Sair</string>
     <string name="text_title_dialog_confirm_logout">Confirmação</string>
     <string name="text_message_dialog_confirm_logout">Tem certeza que deseja sair?</string>
+
+    <!-- Flashcards -->
+    <string name="text_flashcards_menu_title">Seus Flashcards</string>
+    <string name="text_criar_flashcards_title">Criação de Flashcards</string>
+    <string name="text_flashcards_menu_biologia">Biologia</string>
+    <string name="text_flashcards_menu_fisica">Física</string>
+    <string name="text_flashcards_menu_quimica">Química</string>
+    <string name="adicionar_novo_flashcard"> Adicionar novo flashcard</string>
+    <string name="hint_nome_criar_flashcard">Nome do Flashcard</string>
+    <string name="text_criar_flashcard_disciplina">Disciplina</string>
+
+
 </resources>

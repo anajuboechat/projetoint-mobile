@@ -22,9 +22,15 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="40dp"
-            app:navigationIcon="@drawable/ic_back">
-
+            app:navigationIcon="@drawable/ic_back"
+            android:paddingTop="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_title_toolbar_register_fragment"
+                android:textColor="@color/palavras"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="20dp"/>
 
         </com.google.android.material.appbar.MaterialToolbar>
 
@@ -39,35 +45,20 @@
             android:id="@+id/linearlayout2">
 
             <TextView
-                android:id="@+id/textviewNomeUsuário"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/name_text"
-                android:textColor="@color/palavras"
-                android:paddingTop="20dp"/>
-
-            <EditText
-                android:id="@+id/editTextNome"
-                style="@style/EditTextTheme"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:hint="@string/hint_edit_name" />
-
-            <TextView
                 android:id="@+id/textviewEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/email_text"
-                android:textColor="@color/palavras"
-                android:paddingTop="16dp"/>
+                android:textColor="@color/palavras"/>
 
             <EditText
                 android:id="@+id/editTextEmail"
-                style="@style/EditTextTheme"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:hint="@string/hint_edit_email"
-                android:inputType="textEmailAddress" />
+                style="@style/EditTextTheme"
+                android:inputType="textEmailAddress"
+                android:layout_marginTop="4dp" />
 
             <TextView
                 android:id="@+id/textViewSenha"
@@ -83,17 +74,28 @@
                 android:layout_height="48dp"
                 android:inputType="textPassword"
                 android:hint="@string/hint_edit_password"
-                style="@style/EditTextTheme"/>
+                style="@style/EditTextTheme"
+                android:layout_marginTop="4dp"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonCriarconta"
-                style="@style/ButtonTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/text_button_registeraccount_fragment" />
+                android:text="@string/text_button_registeraccount_fragment"
+                style="@style/ButtonTheme"
+                android:layout_marginTop="16dp" />
 
-
+            <ProgressBar
+                android:id="@+id/progressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/palavras"
+                android:layout_marginTop="8dp"
+                android:visibility="invisible"
+                tools:visibility="visible"/>
         </LinearLayout>
     </LinearLayout>
+
+
 </ScrollView>

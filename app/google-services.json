@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "922999935019",
+    "project_id": "projetoint-913e4",
+    "storage_bucket": "projetoint-913e4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922999935019:android:3befa744c619cab9a2da6e",
+        "android_client_info": {
+          "package_name": "com.projeto.medvest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZsECf_OpXR_MK0qKzKEDvi9jKjCBcFjw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

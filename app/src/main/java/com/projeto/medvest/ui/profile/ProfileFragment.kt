@@ -4,7 +4,11 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import com.projeto.medvest.R
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.projeto.medvest.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
@@ -19,6 +23,16 @@ class ProfileFragment : Fragment() {
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.textViewLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+
+            findNavController().navigate(R.id.action_global_loginFragment)
+        }
     }
 
     override fun onDestroyView() {
