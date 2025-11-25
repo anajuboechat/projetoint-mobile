@@ -5,12 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.projeto.medvest.R
-import com.projeto.medvest.databinding.FragmentFlashcardBinding
-import com.projeto.medvest.databinding.FragmentMenuBinding
+import com.projeto.medvest.databinding.FragmentMateriaBinding
 
-class FlashcardFragment : Fragment() {
-    private var _binding: FragmentFlashcardBinding? = null
+class MateriaFragment : Fragment() {
+    private var _binding: FragmentMateriaBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -18,7 +16,7 @@ class FlashcardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFlashcardBinding.inflate(inflater,container,false)
+        _binding = FragmentMateriaBinding.inflate(inflater,container,false)
         return binding.root
     }
 
