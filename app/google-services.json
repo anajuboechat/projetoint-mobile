@@ -1,26 +1,37 @@
 {
   "project_info": {
-    "project_number": "922999935019",
-    "project_id": "projetoint-913e4",
-    "storage_bucket": "projetoint-913e4.firebasestorage.app"
+    "project_number": "261146979409",
+    "firebase_url": "https://medvestplus-default-rtdb.firebaseio.com",
+    "project_id": "medvestplus",
+    "storage_bucket": "medvestplus.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:922999935019:android:3befa744c619cab9a2da6e",
+        "mobilesdk_app_id": "1:261146979409:android:6e7fd4ad2a3ceba8205c70",
         "android_client_info": {
           "package_name": "com.projeto.medvest"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "261146979409-tdf0e35o49djan0ig55i92jo2tm7rdt4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyAZsECf_OpXR_MK0qKzKEDvi9jKjCBcFjw"
+          "current_key": "AIzaSyAcRR2Mfvj6PbBtxwLshtugB_5LUy3xyRo"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261146979409-tdf0e35o49djan0ig55i92jo2tm7rdt4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

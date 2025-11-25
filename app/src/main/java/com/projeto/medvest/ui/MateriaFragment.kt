@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.projeto.medvest.R
+import androidx.navigation.fragment.findNavController
 import com.projeto.medvest.databinding.FragmentMateriaBinding
 
 class MateriaFragment : Fragment() {
@@ -19,6 +21,16 @@ class MateriaFragment : Fragment() {
         _binding = FragmentMateriaBinding.inflate(inflater,container,false)
         return binding.root
     }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.buttonAdicionarMateria.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_materiaFragment_to_criarMateriaFragment
+            )
+        }
+    }
+
 
 
     override fun onDestroyView() {

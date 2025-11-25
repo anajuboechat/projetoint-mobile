@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.CriarMateriaFragment">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        app:navigationIcon="@drawable/ic_back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_marginTop="?attr/actionBarSize">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_criar_flashcards_title"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:paddingBottom="16dp" />
+        <TextView
+            android:id="@+id/textviewNome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_text"
+            android:textColor="@color/palavras"/>
+
+        <EditText
+            android:id="@+id/edittextnome"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="@string/hint_nome_criar_materia"
+            style="@style/EditTextTheme"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="4dp" />
+        <TextView
+            android:id="@+id/textviewDisciplinas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_criar_flashcard_disciplina"
+            android:textColor="@color/palavras"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutDisciplina"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Disciplina">
+
+            <AutoCompleteTextView
+                android:id="@+id/dropdownDisciplina"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/SalvarMateria"
+            style="@style/ButtonTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/text_salvar_materia_fragment_materia"
+            android:textColor="#E6E6E6"
+            android:textSize="16sp"
+            android:layout_gravity="center"/>
+
+
+    </LinearLayout>
+
+</FrameLayout>

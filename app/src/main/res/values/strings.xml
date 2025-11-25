@@ -51,9 +51,11 @@
     <string name="text_flashcards_menu_biologia">Biologia</string>
     <string name="text_flashcards_menu_fisica">Física</string>
     <string name="text_flashcards_menu_quimica">Química</string>
-    <string name="adicionar_novo_flashcard"> Adicionar novo flashcard</string>
+    <string name="adicionar_novo_flashcard"> Adicionar nova Matéria</string>
     <string name="hint_nome_criar_flashcard">Nome do Flashcard</string>
+    <string name="hint_nome_criar_materia">Nome da Materia</string>
     <string name="text_criar_flashcard_disciplina">Disciplina</string>
+    <string name="text_salvar_materia_fragment_materia">Salvar</string>
 
 
 </resources>

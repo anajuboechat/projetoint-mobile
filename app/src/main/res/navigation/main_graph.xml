@@ -42,6 +42,12 @@
             android:id="@+id/action_estudosFragment_to_materiaFragment"
             app:destination="@id/materiaFragment" />
     </fragment>
+    <!-- CRIAR MATERIA FRAGMENT -->
+    <fragment
+        android:id="@+id/criarMateriaFragment"
+        android:name="com.projeto.medvest.ui.CriarMateriaFragment"
+        android:label="fragment_criar_materia"
+        tools:layout="@layout/fragment_criar_materia" />
 
     <!-- MATERIA FRAGMENT -->
     <fragment
@@ -49,6 +55,9 @@
         android:name="com.projeto.medvest.ui.MateriaFragment"
         android:label="fragment_materia"
         tools:layout="@layout/fragment_materia" />
+    <action
+        android:id="@+id/action_materiaFragment_to_criarMateriaFragment"
+        app:destination="@id/criarMateriaFragment" />
 
     <!-- AUTH FLOW -->
     <navigation
