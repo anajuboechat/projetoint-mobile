@@ -123,6 +123,16 @@
             android:name="materia"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/flashcardViewFragment"
+        android:name="com.projeto.medvest.ui.FlashcardViewFragment"
+        android:label="FlashcardViewFragment">
+
+        <argument
+            android:name="flashcard"
+            app:argType="com.projeto.medvest.data.Flashcard" />
+    </fragment>
+
 
 
 

@@ -36,25 +36,33 @@ class DetalhesMateriaFragment : Fragment() {
         val disciplina = args.disciplina.lowercase()
         val materia = args.materia.lowercase()
 
+        // Voltar
         binding.toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
 
-        binding.tituloMateria.text = args.materia
+        // Títulos
         binding.tituloDisciplina.text = args.disciplina
+        binding.tituloMateria.text = args.materia
 
         // RecyclerView
-        adapter = FlashcardAdapter(flashcards)
+        adapter = FlashcardAdapter(flashcards) { flashcard ->
+            // Ao clicar no flashcard → abrir tela ampliada (ainda vamos criar essa parte)
+            abrirFlashcard(flashcard)
+        }
+
         binding.recyclerFlashcards.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerFlashcards.adapter = adapter
 
         carregarFlashcards(disciplina, materia)
 
-        // botão para criar flashcard
+        // Botão criar flashcard
         binding.btCriarFlashcard.setOnClickListener {
             val action = DetalhesMateriaFragmentDirections
-                .actionDetalhesMateriaFragmentToCriarFlashcardFragment(args.disciplina, args.materia)
-
+                .actionDetalhesMateriaFragmentToCriarFlashcardFragment(
+                    args.disciplina,
+                    args.materia
+                )
             findNavController().navigate(action)
         }
     }
@@ -77,9 +85,7 @@ class DetalhesMateriaFragment : Fragment() {
 
                 for (item in snapshot.children) {
                     val flashcard = item.getValue(Flashcard::class.java)
-                    if (flashcard != null) {
-                        flashcards.add(flashcard)
-                    }
+                    if (flashcard != null) flashcards.add(flashcard)
                 }
 
                 adapter.notifyDataSetChanged()
@@ -90,5 +96,10 @@ class DetalhesMateriaFragment : Fragment() {
 
             override fun onCancelled(error: DatabaseError) {}
         })
+    }
+
+    private fun abrirFlashcard(flashcard: Flashcard) {
+        // Vai abrir o flashcard grande
+        // (vamos implementar no próximo passo)
     }
 }
