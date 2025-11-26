@@ -76,8 +76,12 @@ class MateriaFragment : Fragment() {
             // Atualiza adapter
             binding.recyclerDisciplinas.adapter =
                 DisciplinaAdapter(listaDisciplinas) { materia ->
+
                     val action = MateriaFragmentDirections
-                        .actionMateriaFragmentToDetalhesMateriaFragment(materia.nome)
+                        .actionMateriaFragmentToDetalhesMateriaFragment(
+                            disciplina = materia.disciplina,
+                            materia = materia.nome)
+
                     findNavController().navigate(action)
                 }
 

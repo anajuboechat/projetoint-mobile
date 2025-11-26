@@ -69,10 +69,16 @@
         <action
             android:id="@+id/action_materiaFragment_to_detalhesMateriaFragment"
             app:destination="@id/detalhesMateriaFragment">
+
             <argument
-                android:name="nomeMateria"
+                android:name="disciplina"
+                app:argType="string" />
+
+            <argument
+                android:name="materia"
                 app:argType="string" />
         </action>
+
     </fragment>
 
 
@@ -82,11 +88,43 @@
         android:label="fragment_detalhes_materia"
         tools:layout="@layout/fragment_detalhes_materia">
 
-        <!-- Argumento para receber o nome da matéria -->
         <argument
-            android:name="nomeMateria"
+            android:name="disciplina"
+            app:argType="string" />
+
+        <argument
+            android:name="materia"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_detalhesMateriaFragment_to_criarFlashcardFragment"
+            app:destination="@id/criarFlashcardFragment">
+            <argument
+                android:name="disciplina"
+                app:argType="string" />
+            <argument
+                android:name="materia"
+                app:argType="string" />
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/criarFlashcardFragment"
+        android:name="com.projeto.medvest.ui.CriarFlashcardFragment"
+        android:label="fragment_criar_flashcard"
+        tools:layout="@layout/fragment_criar_flashcard">
+
+        <argument
+            android:name="disciplina"
+            app:argType="string" />
+
+        <argument
+            android:name="materia"
             app:argType="string" />
     </fragment>
+
+
 
 
     <!-- AUTH FLOW (SUBGRAFO) -->
