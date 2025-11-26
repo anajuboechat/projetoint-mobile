@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Estilo para deixar os CheckBoxes redondos -->
+    <style name="RoundCheckBox">
+        <item name="android:button">@drawable/ic_checkbox_custom</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+</resources>
