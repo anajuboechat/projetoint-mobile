@@ -11,11 +11,18 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.projeto.medvest.databinding.FragmentCriarMateriaBinding
+import java.text.Normalizer
 
 class CriarMateriaFragment : Fragment() {
 
     private var _binding: FragmentCriarMateriaBinding? = null
     private val binding get() = _binding!!
+
+    fun String.removerAcentos(): String {
+        val normalizada = Normalizer.normalize(this, Normalizer.Form.NFD)
+        return normalizada.replace(Regex("\\p{M}"), "")
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -74,7 +81,7 @@ class CriarMateriaFragment : Fragment() {
             .getReference("usuarios")
             .child(uid)
             .child("categoria")
-            .child(disciplina.lowercase())
+            .child(disciplina.removerAcentos().lowercase())
             .child(nome.lowercase()) // <-- cria o nó da matéria pelo nome
 
         val key = dbRef.push().key ?: return
