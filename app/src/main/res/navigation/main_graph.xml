@@ -5,10 +5,16 @@
     android:id="@+id/main_graph"
     app:startDestination="@id/splashFragment">
 
-    <!-- GLOBAL ACTION PARA MATERIAFRAGMENT -->
+    <!-- 🌍 ACTIONS GLOBAIS (ACESSÍVEIS DE QUALQUER FRAGMENT) -->
     <action
         android:id="@+id/action_global_materiaFragment"
         app:destination="@id/materiaFragment" />
+
+    <action
+        android:id="@+id/action_global_loginFragment"
+        app:destination="@id/loginFragment"
+        app:popUpTo="@id/homeFragment"
+        app:popUpToInclusive="true" />
 
     <!-- SPLASH -->
     <fragment
@@ -16,50 +22,54 @@
         android:name="com.projeto.medvest.ui.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash">
+
         <action
             android:id="@+id/action_splashFragment_to_authentication"
             app:destination="@id/authentication" />
+
         <action
             android:id="@+id/action_splashFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 
-    <!-- HOME FRAGMENT -->
+    <!-- HOME -->
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.projeto.medvest.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 
-    <!-- ESTUDOS FRAGMENT -->
+    <!-- ESTUDOS -->
     <fragment
         android:id="@+id/estudosFragment"
         android:name="com.projeto.medvest.ui.EstudosFragment"
         android:label="fragment_estudos"
         tools:layout="@layout/fragment_estudos">
-        <!-- Ação local (opcional) -->
+
         <action
             android:id="@+id/action_estudosFragment_to_materiaFragment"
             app:destination="@id/materiaFragment" />
     </fragment>
-    <!-- CRIAR MATERIA FRAGMENT -->
+
+    <!-- CRIAR MATERIA -->
     <fragment
         android:id="@+id/criarMateriaFragment"
         android:name="com.projeto.medvest.ui.CriarMateriaFragment"
         android:label="fragment_criar_materia"
         tools:layout="@layout/fragment_criar_materia" />
 
-    <!-- MATERIA FRAGMENT -->
+    <!-- MATERIA -->
     <fragment
         android:id="@+id/materiaFragment"
         android:name="com.projeto.medvest.ui.MateriaFragment"
         android:label="fragment_materia"
         tools:layout="@layout/fragment_materia" />
+
     <action
         android:id="@+id/action_materiaFragment_to_criarMateriaFragment"
         app:destination="@id/criarMateriaFragment" />
 
-    <!-- AUTH FLOW -->
+    <!-- AUTH FLOW (SUBGRAFO) -->
     <navigation
         android:id="@+id/authentication"
         app:startDestination="@id/loginFragment">
@@ -69,9 +79,11 @@
             android:name="com.projeto.medvest.ui.auth.LoginFragment"
             android:label="fragment_login"
             tools:layout="@layout/fragment_login">
+
             <action
                 android:id="@+id/action_loginFragment_to_recoverAccountFragment"
                 app:destination="@id/recoverAccountFragment" />
+
             <action
                 android:id="@+id/action_loginFragment_to_registerFragment"
                 app:destination="@id/registerFragment" />
@@ -89,6 +101,7 @@
             android:label="fragment_register"
             tools:layout="@layout/fragment_register" />
 
+        <!-- ACTION PARA SAIR E VOLTAR AO HOME -->
         <action
             android:id="@+id/action_global_homeFragment"
             app:destination="@id/homeFragment"
@@ -99,13 +112,8 @@
             android:id="@+id/action_homeFragment_to_autentication"
             app:destination="@id/authentication"
             app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="true"/>
-
-        <action
-            android:id="@+id/action_global_loginFragment"
-            app:destination="@id/loginFragment"
-            app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+
     </navigation>
 
 </navigation>

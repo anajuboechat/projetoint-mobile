@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.MateriaFragment">
@@ -10,54 +10,36 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
         app:navigationIcon="@drawable/ic_back" />
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:padding="16dp"
         android:layout_marginTop="?attr/actionBarSize">
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/text_flashcards_menu_title"
-            android:textAppearance="?attr/textAppearanceHeadline6"
-            android:paddingBottom="16dp" />
+            android:textSize="30sp"
+            android:textColor="@color/palavras">
+        </TextView>
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerDisciplinas"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/menu_biologia"
-            android:textAppearance="?attr/textAppearanceBody1"
-            android:paddingBottom="8dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/text_flashcards_menu_fisica"
-            android:textAppearance="?attr/textAppearanceBody1"
-            android:paddingBottom="8dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/text_flashcards_menu_quimica"
-            android:textAppearance="?attr/textAppearanceBody1"
-            android:paddingBottom="16dp" />
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
         <Button
             android:id="@+id/buttonAdicionarMateria"
             style="@style/ButtonTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:text="@string/adicionar_novo_flashcard"
-            android:textColor="#E6E6E6"
-            android:textSize="16sp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:paddingEnd="50dp"/>
     </LinearLayout>
 
 </FrameLayout>

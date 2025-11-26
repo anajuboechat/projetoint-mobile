@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="Simulados"
-        android:textColor="#000000"
+        android:textColor="@color/palavras"
         android:textSize="30sp" />
 
     <ImageView
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="Flashcards"
-        android:textColor="#000000"
+        android:textColor="@color/palavras"
         android:textSize="30sp" />
 
     <ImageView

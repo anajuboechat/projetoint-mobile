@@ -70,23 +70,20 @@ class CriarMateriaFragment : Fragment() {
             return
         }
 
-        // ✔ Caminho CORRETO baseado nas regras do Firebase
         val dbRef = FirebaseDatabase.getInstance()
             .getReference("usuarios")
             .child(uid)
             .child("categoria")
             .child(disciplina.lowercase())
+            .child(nome.lowercase()) // <-- cria o nó da matéria pelo nome
 
-        // ✔ cria um novo ID
         val key = dbRef.push().key ?: return
 
         val materiaMap = mapOf(
-            "idMateria" to key,
-            "nome" to nome,
-            "disciplina" to disciplina
+            "id" to key,
+            "criadoEm" to System.currentTimeMillis()
         )
 
-        // ✔ salva no nó correto: usuarios/uid/categoria/disciplina/<key>
         dbRef.child(key).setValue(materiaMap)
             .addOnSuccessListener {
                 if (isAdded) {
