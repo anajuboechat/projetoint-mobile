@@ -1,20 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="12dp">
+    android:padding="8dp"
+    android:background="@drawable/bg_materia"
+    android:layout_marginEnd="8dp">
 
     <TextView
-        android:id="@+id/textDisciplina"
+        android:id="@+id/textNomeMateria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:text="Matéria"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:padding="8dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerMaterias"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:overScrollMode="never"
-        android:background="@drawable/bg_materia"/>
 </LinearLayout>

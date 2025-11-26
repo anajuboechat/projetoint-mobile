@@ -9,11 +9,12 @@ import com.projeto.medvest.R
 import com.projeto.medvest.data.Materia
 
 class MateriaAdapter(
-    private val lista: List<Materia>
+    private val lista: List<Materia>,
+    private val onClick: (Materia) -> Unit
 ) : RecyclerView.Adapter<MateriaAdapter.MateriaViewHolder>() {
 
     inner class MateriaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nome: TextView = itemView.findViewById(R.id.textDisciplina)
+        val nome: TextView = itemView.findViewById(R.id.textNomeMateria)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MateriaViewHolder {
@@ -25,6 +26,10 @@ class MateriaAdapter(
     override fun onBindViewHolder(holder: MateriaViewHolder, position: Int) {
         val item = lista[position]
         holder.nome.text = item.nome
+
+        holder.itemView.setOnClickListener {
+            onClick(item)
+        }
     }
 
     override fun getItemCount() = lista.size

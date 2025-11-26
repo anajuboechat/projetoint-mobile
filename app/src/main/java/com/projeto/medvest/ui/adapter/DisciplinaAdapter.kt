@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.projeto.medvest.R
 import com.projeto.medvest.data.DisciplinaComMaterias
+import com.projeto.medvest.data.Materia
 
 class DisciplinaAdapter(
-    private val lista: List<DisciplinaComMaterias>
+    private val lista: List<DisciplinaComMaterias>,
+    private val onClick: (Materia) -> Unit
 ) : RecyclerView.Adapter<DisciplinaAdapter.DisciplinaViewHolder>() {
 
     inner class DisciplinaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -20,19 +22,18 @@ class DisciplinaAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DisciplinaViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_materia, parent, false)
+            .inflate(R.layout.item_disciplina, parent, false)
         return DisciplinaViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: DisciplinaViewHolder, position: Int) {
         val item = lista[position]
-
         holder.nomeDisciplina.text = item.disciplina
 
         holder.recyclerMaterias.layoutManager =
             LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
 
-        holder.recyclerMaterias.adapter = MateriaAdapter(item.materias)
+        holder.recyclerMaterias.adapter = MateriaAdapter(item.materias, onClick)
     }
 
     override fun getItemCount() = lista.size

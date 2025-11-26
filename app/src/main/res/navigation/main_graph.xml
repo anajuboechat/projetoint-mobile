@@ -57,17 +57,37 @@
         android:name="com.projeto.medvest.ui.CriarMateriaFragment"
         android:label="fragment_criar_materia"
         tools:layout="@layout/fragment_criar_materia" />
-
-    <!-- MATERIA -->
     <fragment
         android:id="@+id/materiaFragment"
         android:name="com.projeto.medvest.ui.MateriaFragment"
         android:label="fragment_materia"
-        tools:layout="@layout/fragment_materia" />
+        tools:layout="@layout/fragment_materia">
+        <action
+            android:id="@+id/action_materiaFragment_to_criarMateriaFragment"
+            app:destination="@id/criarMateriaFragment" />
 
-    <action
-        android:id="@+id/action_materiaFragment_to_criarMateriaFragment"
-        app:destination="@id/criarMateriaFragment" />
+        <action
+            android:id="@+id/action_materiaFragment_to_detalhesMateriaFragment"
+            app:destination="@id/detalhesMateriaFragment">
+            <argument
+                android:name="nomeMateria"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/detalhesMateriaFragment"
+        android:name="com.projeto.medvest.ui.DetalhesMateriaFragment"
+        android:label="fragment_detalhes_materia"
+        tools:layout="@layout/fragment_detalhes_materia">
+
+        <!-- Argumento para receber o nome da matéria -->
+        <argument
+            android:name="nomeMateria"
+            app:argType="string" />
+    </fragment>
+
 
     <!-- AUTH FLOW (SUBGRAFO) -->
     <navigation
