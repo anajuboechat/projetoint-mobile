@@ -8,4 +8,8 @@
     <color name="palavras">#3b3f2b</color>
     <color name="cinza">#c9c7c7</color>
     <color name="purple_500">#6200EE</color>
+    <color name="verde_escuro">#223722</color>
+    <color name="red">#832820</color>
+    <color name="green_500">#223722</color>
+    <color name="red_500">#832820</color>
 </resources>

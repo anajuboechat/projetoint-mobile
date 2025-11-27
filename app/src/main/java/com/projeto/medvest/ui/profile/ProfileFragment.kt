@@ -32,27 +32,20 @@ class ProfileFragment : Fragment() {
 
     private var selectedBitmap: Bitmap? = null
 
-    // Abrir galeria
     private val galleryLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val uri = result.data?.data
                 val bitmap = uriToBitmap(uri)
-
                 if (bitmap != null) {
                     selectedBitmap = reduzirBitmap(bitmap)
                     binding.imageProfile.setImageBitmap(selectedBitmap)
-
                     salvarImagem(selectedBitmap!!)
                 }
             }
         }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -61,79 +54,59 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val uid = auth.currentUser!!.uid
-
         carregarDados(uid)
 
-        binding.iconEditProfile.setOnClickListener {
-            abrirGaleria()
-        }
+        binding.iconEditProfile.setOnClickListener { abrirGaleria() }
+        binding.buttonSalvarTudo.setOnClickListener { salvarAlteracoes(uid) }
 
-        binding.buttonCriarconta.setOnClickListener {
-            salvarAlteracoes(uid)
-        }
-
-        binding.textViewLogout.setOnClickListener {
+        binding.buttonLogout.setOnClickListener {
             auth.signOut()
             findNavController().navigate(R.id.action_global_authentication)
         }
     }
 
-    // ------------------------------------------------------------------
-    // ------------------------ CARREGAR DADOS ---------------------------
-    // ------------------------------------------------------------------
     private fun carregarDados(uid: String) {
-
         database.child(uid).get().addOnSuccessListener { snap ->
             if (!snap.exists()) return@addOnSuccessListener
 
             binding.editTextNome.setText(snap.child("nome").value?.toString() ?: "")
-            binding.editTextEmail.setText(snap.child("email").value?.toString() ?: "")
+            binding.editTextEmail.text = snap.child("email").value?.toString() ?: ""
 
             // Carregar avatar
             val avatarBase64 = snap.child("avatar").value?.toString()
-            if (avatarBase64 != null && avatarBase64.isNotBlank()) {
-
+            if (!avatarBase64.isNullOrBlank()) {
                 val pureBase64 = avatarBase64.substringAfter("base64,", "")
-
                 val bitmap = base64ToBitmap(pureBase64)
-                if (bitmap != null) {
-                    binding.imageProfile.setImageBitmap(bitmap)
-                }
+                if (bitmap != null) binding.imageProfile.setImageBitmap(bitmap)
             }
 
-            val listaVest = snap.child("vestibulares").children.mapNotNull { it.getValue(String::class.java) }
+            // Carregar universidades marcadas
+            val db = FirebaseDatabase.getInstance()
+                .getReference("usuarios")
+                .child(uid)
+                .child("preferencias")
+                .child("universidades")
 
-            binding.cbEnem.isChecked = listaVest.any { it.equals("enem", ignoreCase = true) }
-            binding.cbComvest.isChecked = listaVest.any { it.equals("comvest", ignoreCase = true) }
-            binding.cbFuvest.isChecked = listaVest.any { it.equals("fuvest", ignoreCase = true) }
-            binding.cbOutro.isChecked = listaVest.any { it.equals("outro", ignoreCase = true) }
+            db.get().addOnSuccessListener { snapshot ->
+                val lista = snapshot.children.mapNotNull { it.getValue(String::class.java) }
+
+                binding.rbUnicamp.isChecked = lista.contains("Unicamp")
+                binding.rbUsp.isChecked = lista.contains("USP")
+                binding.rbUerj.isChecked = lista.contains("UERJ")
+                binding.rbEnem.isChecked = lista.contains("ENEM")
+            }
         }
     }
 
-    // ------------------------------------------------------------------
-    // ------------------------- SALVAR IMAGEM ---------------------------
-    // ------------------------------------------------------------------
     private fun salvarImagem(bitmap: Bitmap) {
-
         val base64 = bitmapToBase64(bitmap)
+        val finalBase64 = "data:image/png;base64,$base64"
 
-        // prefixo IGUAL ao JavaScript
-        val fullBase64 = "data:image/png;base64,$base64"
-
-        val uid = auth.currentUser!!.uid
-
-        database.child(uid).child("avatar").setValue(fullBase64)
-            .addOnSuccessListener {
-                Toast.makeText(requireContext(), "Foto atualizada!", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener {
-                Toast.makeText(requireContext(), "Erro ao salvar foto!", Toast.LENGTH_SHORT).show()
-            }
+        database.child(auth.currentUser!!.uid).child("avatar").setValue(finalBase64)
+            .addOnSuccessListener { Toast.makeText(requireContext(), "Foto atualizada!", Toast.LENGTH_SHORT).show() }
+            .addOnFailureListener { Toast.makeText(requireContext(), "Erro ao salvar foto!", Toast.LENGTH_SHORT).show() }
     }
 
-    // ------------------------------------------------------------------
-    // ----------------------- SALVAR DEMAIS CAMPOS ----------------------
-    // ------------------------------------------------------------------
     private fun salvarAlteracoes(uid: String) {
 
         val nome = binding.editTextNome.text.toString().trim()
@@ -144,30 +117,35 @@ class ProfileFragment : Fragment() {
             return
         }
 
-        val vestibulares = mutableListOf<String>()
-        if (binding.cbEnem.isChecked) vestibulares.add("enem")
-        if (binding.cbComvest.isChecked) vestibulares.add("comvest")
-        if (binding.cbFuvest.isChecked) vestibulares.add("fuvest")
-        if (binding.cbOutro.isChecked) vestibulares.add("outro")
+        val dbVest = FirebaseDatabase.getInstance()
+            .getReference("usuarios")
+            .child(uid)
+            .child("preferencias")
+            .child("universidades")
+
+        val lista = mutableListOf<String>()
+
+        if (binding.rbUnicamp.isChecked) lista.add("Unicamp")
+        if (binding.rbUsp.isChecked) lista.add("USP")
+        if (binding.rbUerj.isChecked) lista.add("UERJ")
+        if (binding.rbEnem.isChecked) lista.add("ENEM")
+
+        dbVest.setValue(lista)
+            .addOnSuccessListener {
+                Toast.makeText(requireContext(), "Preferências atualizadas!", Toast.LENGTH_SHORT).show()
+            }
 
         val updates = mapOf(
             "nome" to nome,
-            "email" to email,
-            "vestibulares" to vestibulares
+            "email" to email
         )
 
         database.child(uid).updateChildren(updates)
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "Perfil salvo!", Toast.LENGTH_SHORT).show()
             }
-            .addOnFailureListener {
-                Toast.makeText(requireContext(), "Erro ao salvar!", Toast.LENGTH_SHORT).show()
-            }
     }
 
-    // ------------------------------------------------------------------
-    // --------------------------- IMAGENS -------------------------------
-    // ------------------------------------------------------------------
     private fun abrirGaleria() {
         val intent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
             Intent(MediaStore.ACTION_PICK_IMAGES)
@@ -179,12 +157,10 @@ class ProfileFragment : Fragment() {
 
     private fun uriToBitmap(uri: Uri?): Bitmap? {
         return try {
-            requireActivity().contentResolver.openInputStream(uri!!).use {
+            requireActivity().contentResolver.openInputStream(uri!!)?.use {
                 BitmapFactory.decodeStream(it)
             }
-        } catch (e: Exception) {
-            null
-        }
+        } catch (e: Exception) { null }
     }
 
     private fun reduzirBitmap(bitmap: Bitmap, largura: Int = 600): Bitmap {
@@ -203,9 +179,7 @@ class ProfileFragment : Fragment() {
         return try {
             val bytes = Base64.decode(base64, Base64.DEFAULT)
             BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-        } catch (e: Exception) {
-            null
-        }
+        } catch (e: Exception) { null }
     }
 
     override fun onDestroyView() {

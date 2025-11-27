@@ -8,4 +8,11 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="RadioButtonTheme" parent="android:Widget.CompoundButton.RadioButton">
+        <item name="android:buttonTint">@color/verde_escuro</item>
+        <item name="android:textColor">@color/palavras</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
 </resources>
