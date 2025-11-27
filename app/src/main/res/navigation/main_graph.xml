@@ -23,6 +23,10 @@
         app:popUpTo="@id/homeFragment"
         app:popUpToInclusive="true" />
 
+    <action
+        android:id="@+id/action_estudosFragment_to_simuladosFragment"
+        app:destination="@id/simuladosFragment" />
+
     <!-- SPLASH -->
     <fragment
         android:id="@+id/splashFragment"
@@ -56,6 +60,20 @@
         <action
             android:id="@+id/action_estudosFragment_to_materiaFragment"
             app:destination="@id/materiaFragment" />
+
+    </fragment>
+
+    <!-- SIMULADOS -->
+    <fragment
+        android:id="@+id/simuladosFragment"
+        android:name="com.projeto.medvest.ui.SimuladosFragment"
+        android:label="fragment_simulados"
+        tools:layout="@layout/fragment_simulados">
+
+        <action
+            android:id="@+id/action_simuladosFragment_to_estudosFragment"
+            app:destination="@id/estudosFragment" />
+
     </fragment>
 
     <!-- CRIAR MATERIA -->

@@ -17,9 +17,10 @@
         android:textSize="30sp" />
 
     <ImageView
+        android:id="@+id/imageSimulados"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:src="@drawable/ic_flashcards"
+        android:src="@drawable/ic_simulados_estudo"
         android:layout_marginBottom="20dp" />
 
     <TextView
@@ -34,5 +35,5 @@
         android:id="@+id/imageFlashcard"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:src="@drawable/ic_simulados_estudo" />
+        android:src="@drawable/ic_flashcards" />
 </LinearLayout>

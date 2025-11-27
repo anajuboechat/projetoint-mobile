@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="#F5F8E7"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/btnBackSimulados"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_back"
+            android:padding="4dp"
+            android:layout_gravity="start"
+            android:layout_marginBottom="12dp"
+            android:foreground="?attr/selectableItemBackgroundBorderless"/>
+
+
+        <TextView
+        android:id="@+id/titleSimulados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Simulados"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#333"
+        android:layout_marginBottom="12dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Escolha um vestibular para praticar:"
+        android:textColor="#444"
+        android:textSize="16sp"
+        android:layout_marginBottom="24dp" />
+
+    <!-- CARD ENEM -->
+    <LinearLayout
+        android:id="@+id/cardEnem"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/bg_card_simulado"
+        android:gravity="center"
+        android:layout_marginBottom="18dp"
+        android:padding="16dp"
+        android:clipToOutline="true"
+        android:elevation="4dp"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <ImageView
+            android:src="@drawable/enem_logo"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"/>
+    </LinearLayout>
+
+    <!-- CARD UNICAMP -->
+    <LinearLayout
+        android:id="@+id/cardUnicamp"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/bg_card_simulado"
+        android:gravity="center"
+        android:layout_marginBottom="18dp"
+        android:padding="16dp"
+        android:clipToOutline="true"
+        android:elevation="4dp"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <ImageView
+            android:src="@drawable/unicamp_logo"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"/>
+    </LinearLayout>
+
+    <!-- CARD FUVEST -->
+    <LinearLayout
+        android:id="@+id/cardFuvest"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/bg_card_simulado"
+        android:gravity="center"
+        android:layout_marginBottom="18dp"
+        android:padding="16dp"
+        android:clipToOutline="true"
+        android:elevation="4dp"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <ImageView
+            android:src="@drawable/fuvest_logo"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"/>
+    </LinearLayout>
+
+    <!-- CARD UERJ -->
+    <LinearLayout
+        android:id="@+id/cardUerj"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/bg_card_simulado"
+        android:gravity="center"
+        android:padding="16dp"
+        android:clipToOutline="true"
+        android:elevation="4dp"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <ImageView
+            android:src="@drawable/uerj_logo"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"/>
+    </LinearLayout>
+
+</LinearLayout>
+
+    </ScrollView>

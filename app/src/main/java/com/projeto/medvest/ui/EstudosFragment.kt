@@ -28,6 +28,10 @@ class EstudosFragment : Fragment() {
         binding.imageFlashcard.setOnClickListener {
             findNavController().navigate(R.id.action_global_materiaFragment)
         }
+
+        binding.imageSimulados.setOnClickListener {
+            findNavController().navigate(R.id.action_estudosFragment_to_simuladosFragment)
+        }
     }
 
 
