@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="Criar Flashcard"
+        app:title="@string/text_criar_flashcard_title"
         app:navigationIcon="@drawable/ic_back"
         android:paddingTop="10dp" />
 
@@ -24,28 +24,28 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Frente"
+            android:text="@string/text_criar_flashcard_frente"
             android:textColor="@color/palavras" />
 
         <EditText
             android:id="@+id/editFrente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Digite a frente do flashcard"
+            android:hint="@string/hint_criar_flashcard_frente"
             style="@style/EditTextTheme"
             android:layout_marginBottom="16dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Verso"
+            android:text="@string/crair_flashcard_verso"
             android:textColor="@color/palavras" />
 
         <EditText
             android:id="@+id/editVerso"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Digite o verso do flashcard"
+            android:hint="@string/hint_criar_flashcard_verso"
             style="@style/EditTextTheme"
             android:layout_marginBottom="24dp" />
 
@@ -53,7 +53,7 @@
             android:id="@+id/btnSalvar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Salvar"
+            android:text="@string/text_salvar"
             style="@style/ButtonTheme"
             />
 

@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:hint="Continue"
+            android:hint="@string/text_continue"
             android:textColor="#E6E6E6"
             android:textColorHint="#E6E6E6"
             android:textSize="16dp" />

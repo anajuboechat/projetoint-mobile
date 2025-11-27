@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/text_criar_flashcards_title"
+            android:text="@string/adicionar_nova_materia"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:paddingBottom="16dp" />
         <TextView
@@ -52,7 +52,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Disciplina">
+            android:hint="@string/text_criar_flashcard_disciplina">
 
             <AutoCompleteTextView
                 android:id="@+id/dropdownDisciplina"

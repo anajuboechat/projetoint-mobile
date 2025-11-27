@@ -45,7 +45,7 @@ class FlashcardViewFragment : Fragment() {
     }
 
     private fun mostrarTras() {
-        binding.textConteudo.text = flashcard.tras
+        binding.textConteudo.text = flashcard.verso
         mostrandoFrente = false
     }
 }

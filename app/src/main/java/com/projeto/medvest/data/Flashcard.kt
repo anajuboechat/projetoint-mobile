@@ -7,5 +7,5 @@ import kotlinx.android.parcel.Parcelize
 data class Flashcard(
     val id: String = "",
     val frente: String = "",
-    val tras: String = ""
+    val verso: String = ""
 ) : Parcelable

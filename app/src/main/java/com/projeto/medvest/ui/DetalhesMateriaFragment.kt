@@ -99,7 +99,10 @@ class DetalhesMateriaFragment : Fragment() {
     }
 
     private fun abrirFlashcard(flashcard: Flashcard) {
-        // Vai abrir o flashcard grande
-        // (vamos implementar no próximo passo)
+        val action = DetalhesMateriaFragmentDirections
+            .actionDetalhesMateriaFragmentToFlashcardFragment(flashcard)
+
+        findNavController().navigate(action)
     }
+
 }

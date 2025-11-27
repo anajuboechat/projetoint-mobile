@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="Simulados"
+        android:text="@string/text_simulados"
         android:textColor="@color/palavras"
         android:textSize="30sp" />
 
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="Flashcards"
+        android:text="@string/text_flashcards"
         android:textColor="@color/palavras"
         android:textSize="30sp" />
 

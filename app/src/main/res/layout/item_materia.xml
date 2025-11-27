@@ -11,7 +11,7 @@
         android:id="@+id/textNomeMateria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Matéria"
+        android:text="@string/text_materia"
         android:textSize="16sp"
         android:textColor="@android:color/black"
         android:padding="8dp" />

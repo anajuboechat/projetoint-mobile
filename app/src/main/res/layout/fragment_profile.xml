@@ -56,7 +56,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nome:"
+            android:text="@string/name_text"
             android:textStyle="bold"
             android:layout_marginTop="24dp" />
 
@@ -64,7 +64,7 @@
             android:id="@+id/editTextNome"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:hint="Digite seu nome"
+            android:hint="@string/hint_edit_name"
             android:paddingHorizontal="12dp"
             android:background="@drawable/edittext_background"
             android:textSize="16sp" />
@@ -73,7 +73,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email:"
+            android:text="@string/email_text"
             android:textStyle="bold"
             android:layout_marginTop="24dp" />
 
@@ -84,14 +84,15 @@
             android:paddingHorizontal="12dp"
             android:gravity="center_vertical"
             android:textSize="16sp"
-            android:textColor="#000000"
+            android:textColor="@color/palavras"
+            android:hint="@string/hint_edit_email"
             android:background="@drawable/edittext_background" />
 
         <!-- VESTIBULARES -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vestibulares de preferência:"
+            android:text="@string/text_profile_vestibulares_preferencia"
             android:textStyle="bold"
             android:layout_marginTop="24dp" />
 
@@ -99,28 +100,28 @@
             android:id="@+id/rbUnicamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Unicamp"
+            android:text="@string/text_unicamp"
             android:buttonTint="@color/checkbox_color"/>
 
         <CheckBox
             android:id="@+id/rbUsp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="USP"
+            android:text="@string/text_usp"
             android:buttonTint="@color/checkbox_color"/>
 
         <CheckBox
             android:id="@+id/rbUerj"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="UERJ"
+            android:text="@string/text_uerj"
             android:buttonTint="@color/checkbox_color"/>
 
         <CheckBox
             android:id="@+id/rbEnem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ENEM"
+            android:text="@string/text_enem"
             android:buttonTint="@color/checkbox_color"/>
 
         <!-- BOTÃO SALVAR -->
@@ -128,7 +129,7 @@
             android:id="@+id/buttonSalvarTudo"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:text="Salvar tudo"
+            android:text="@string/text_profile_salvar_tudo"
             android:textAllCaps="false"
             android:layout_marginTop="24dp"
             android:backgroundTint="@color/green_500"
@@ -141,7 +142,7 @@
             android:id="@+id/buttonLogout"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:text="Sair da conta"
+            android:text="@string/text_logout_profile"
             android:textAllCaps="false"
             android:layout_marginTop="14dp"
             android:backgroundTint="@color/red_500"
