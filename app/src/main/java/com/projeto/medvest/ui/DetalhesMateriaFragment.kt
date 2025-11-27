@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.projeto.medvest.data.Flashcard
@@ -45,13 +45,12 @@ class DetalhesMateriaFragment : Fragment() {
         binding.tituloDisciplina.text = args.disciplina
         binding.tituloMateria.text = args.materia
 
-        // RecyclerView
+        // RecyclerView → agora com 2 colunas
         adapter = FlashcardAdapter(flashcards) { flashcard ->
-            // Ao clicar no flashcard → abrir tela ampliada (ainda vamos criar essa parte)
             abrirFlashcard(flashcard)
         }
 
-        binding.recyclerFlashcards.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerFlashcards.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerFlashcards.adapter = adapter
 
         carregarFlashcards(disciplina, materia)
@@ -80,7 +79,6 @@ class DetalhesMateriaFragment : Fragment() {
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-
                 flashcards.clear()
 
                 for (item in snapshot.children) {

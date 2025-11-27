@@ -58,7 +58,6 @@
         android:layout_height="wrap_content"
         android:text="@string/text_criar_flashcard_title"
         style="@style/ButtonTheme"
-        android:padding="24dp"
         android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

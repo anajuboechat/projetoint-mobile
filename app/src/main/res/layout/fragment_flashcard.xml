@@ -3,48 +3,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
-    android:background="#AA000000">
+    android:background="#EEF5E5">
 
-    <LinearLayout
+    <!-- CONTAINER DO FLASHCARD (vira inteiro) -->
+    <FrameLayout
         android:id="@+id/cardContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp"
-        android:background="@drawable/bg_materia"
+        android:layout_height="500dp"
         android:layout_gravity="center"
-        android:elevation="8dp">
+        android:background="@drawable/bg_materia"
+        android:elevation="8dp"
+        android:padding="24dp">
 
-        <!-- FRENTE -->
+        <!-- FRENTE DO CARTÃO -->
         <TextView
             android:id="@+id/textFrente"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            android:textStyle="bold"
             android:padding="32dp"
-            android:visibility="visible" />
+            android:textSize="26sp"
+            android:textStyle="bold"/>
 
-        <!-- TRÁS -->
+        <!-- VERSO DO CARTÃO -->
         <TextView
             android:id="@+id/textTras"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            android:textStyle="bold"
             android:padding="32dp"
+            android:textSize="26sp"
+            android:textStyle="bold"
             android:visibility="gone" />
-    </LinearLayout>
+    </FrameLayout>
 
+    <!-- BOTÃO DE FECHAR -->
     <ImageView
         android:id="@+id/btFechar"
         android:src="@drawable/ic_close"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="top|end"
-        android:padding="8dp" />
+        android:padding="8dp"/>
+
 </FrameLayout>
