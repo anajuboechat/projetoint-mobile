@@ -74,7 +74,7 @@ class ProfileFragment : Fragment() {
 
         binding.textViewLogout.setOnClickListener {
             auth.signOut()
-            findNavController().navigate(R.id.action_global_loginFragment)
+            findNavController().navigate(R.id.action_global_authentication)
         }
     }
 

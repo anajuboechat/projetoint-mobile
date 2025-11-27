@@ -6,6 +6,13 @@
     app:startDestination="@id/splashFragment">
 
     <!-- 🌍 ACTIONS GLOBAIS (ACESSÍVEIS DE QUALQUER FRAGMENT) -->
+
+    <action
+        android:id="@+id/action_global_authentication"
+        app:destination="@id/authentication"
+        app:popUpTo="@id/main_graph"
+        app:popUpToInclusive="true" />
+
     <action
         android:id="@+id/action_global_materiaFragment"
         app:destination="@id/materiaFragment" />
