@@ -75,5 +75,6 @@
 
     <string name="text_simulados">Simulados</string>
     <string name="text_flashcards">Flashcards</string>
+    <string name="text_button_dialog_cancel">Cancelar</string>
 
 </resources>

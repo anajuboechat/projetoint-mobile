@@ -24,22 +24,28 @@ class SimuladosFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Navegação para cada simulado
         binding.cardEnem.setOnClickListener {
-            // exemplo
-            // findNavController().navigate(R.id.action_simuladosFragment_to_simuladoEnemFragment)
+            val action = SimuladosFragmentDirections
+                .actionSimuladosFragmentToListaSimuladosFragment("enem")
+            findNavController().navigate(action)
         }
 
         binding.cardUnicamp.setOnClickListener {
-            // findNavController().navigate(R.id.action_simuladosFragment_to_simuladoUnicampFragment)
+            val action = SimuladosFragmentDirections
+                .actionSimuladosFragmentToListaSimuladosFragment("unicamp")
+            findNavController().navigate(action)
         }
 
         binding.cardFuvest.setOnClickListener {
-            // findNavController().navigate(R.id.action_simuladosFragment_to_simuladoFuvestFragment)
+            val action = SimuladosFragmentDirections
+                .actionSimuladosFragmentToListaSimuladosFragment("fuvest")
+            findNavController().navigate(action)
         }
 
         binding.cardUerj.setOnClickListener {
-            // findNavController().navigate(R.id.action_simuladosFragment_to_simuladoUerjFragment)
+            val action = SimuladosFragmentDirections
+                .actionSimuladosFragmentToListaSimuladosFragment("uerj")
+            findNavController().navigate(action)
         }
 
         binding.btnBackSimulados.setOnClickListener {

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
+
+
+
+        <ImageView
+            android:id="@+id/btnBackSimulados"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_back"
+            android:padding="4dp"
+            android:layout_gravity="start"
+            android:layout_marginTop="48dp"
+            android:layout_marginBottom="12dp"
+            android:foreground="?attr/selectableItemBackgroundBorderless"/>
+
+        <TextView
+            android:id="@+id/tituloListaSimulados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Simulados"
+            android:textColor="#333"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/subtituloListaSimulados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Escolha um simulado para começar:"
+            android:textColor="@color/subtitulo"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
+
+        <LinearLayout
+            android:id="@+id/containerSimulados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

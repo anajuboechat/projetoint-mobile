@@ -12,4 +12,10 @@
     <color name="red">#832820</color>
     <color name="green_500">#223722</color>
     <color name="red_500">#832820</color>
+    <color name="preto">#161616</color>
+    <color name="titulo">#141414</color>
+    <color name="subtitulo">#161616</color>
+    <color name="bege_fundo">#f6fbe2</color>
+    <color name="verde_botao">#2E7D32</color>
+    <color name="branco">#FFFFFF</color>
 </resources>

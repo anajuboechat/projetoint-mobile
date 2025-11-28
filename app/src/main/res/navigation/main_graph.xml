@@ -74,6 +74,39 @@
             android:id="@+id/action_simuladosFragment_to_estudosFragment"
             app:destination="@id/estudosFragment" />
 
+        <action
+            android:id="@+id/action_simuladosFragment_to_listaSimuladosFragment"
+            app:destination="@id/listaSimuladosFragment" />
+
+    </fragment>
+
+    <!-- LISTA SIMULADOS -->
+    <fragment
+        android:id="@+id/listaSimuladosFragment"
+        android:name="com.projeto.medvest.ui.ListaSimuladosFragment"
+        android:label="fragment_listasimulados"
+        tools:layout="@layout/fragment_lista_simulados">
+
+        <argument
+            android:name="universidade"
+            app:argType="string"
+            android:defaultValue="enem" />
+
+
+        <action
+            android:id="@+id/actionListaSimuladosFragmentToTelaSimuladoFragment"
+            app:destination="@id/telaSimuladoFragment" />
+    </fragment>
+
+    <!-- TELA SIMULADOS -->
+    <fragment
+        android:id="@+id/telaSimuladoFragment"
+        android:name="com.projeto.medvest.ui.TelaSimuladoFragment"
+        android:label="fragment_telasimulado"
+        tools:layout="@layout/fragment_tela_simulado">
+        <argument
+            android:name="codigo"
+            app:argType="string" />
     </fragment>
 
     <!-- CRIAR MATERIA -->

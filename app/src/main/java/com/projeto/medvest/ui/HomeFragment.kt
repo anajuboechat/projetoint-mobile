@@ -54,10 +54,11 @@ class HomeFragment : Fragment() {
     private fun initListeners() {
         binding.btnLogout.setOnClickListener {
             showBottomSheet(
-                tittleButton = R.string.text_button_dialog_confirm_logout,
-                titleDialog = R.string.text_title_dialog_confirm_logout,
+                title = getString(R.string.text_title_dialog_confirm_logout),
                 message = getString(R.string.text_message_dialog_confirm_logout),
-                onClick = {
+                confirmText = getString(R.string.text_button_dialog_confirm_logout),
+                cancelText = getString(R.string.text_button_dialog_cancel),
+                onConfirm = {
                     findNavController().navigate(R.id.action_homeFragment_to_autentication)
                 }
             )

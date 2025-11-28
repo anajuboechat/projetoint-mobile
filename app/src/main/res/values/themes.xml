@@ -36,6 +36,15 @@
         <item name="bottomSheetStyle">@style/bottomSheetDialogWrapper</item>
     </style>
 
+    <style name="BottomSheetTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottomsheet</item>
+    </style>
+
+
     <!-- TEMA FINAL -->
     <style name="Theme.Medvest" parent="Base.Theme.Medvest"/>
 
