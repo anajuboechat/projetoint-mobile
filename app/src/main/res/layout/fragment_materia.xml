@@ -7,6 +7,7 @@
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
+        android:paddingTop="20dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:navigationIcon="@drawable/ic_back"
@@ -25,7 +26,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:padding="16dp"/>
+        android:padding="16dp" />
 
     <!-- RecyclerView preenchendo o espaço entre título e botão -->
     <androidx.recyclerview.widget.RecyclerView
@@ -38,7 +39,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp" />
+        android:paddingEnd="15dp" />
 
     <!-- Botão fixo embaixo -->
     <Button
@@ -50,6 +51,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -70,7 +70,7 @@ class ProfileFragment : Fragment() {
             if (!snap.exists()) return@addOnSuccessListener
 
             binding.editTextNome.setText(snap.child("nome").value?.toString() ?: "")
-            binding.editTextEmail.text = snap.child("email").value?.toString() ?: ""
+            binding.editTextEmail.setText(snap.child("email").value?.toString() ?: "")
 
             // Carregar avatar
             val avatarBase64 = snap.child("avatar").value?.toString()
@@ -111,11 +111,20 @@ class ProfileFragment : Fragment() {
 
         val nome = binding.editTextNome.text.toString().trim()
         val email = binding.editTextEmail.text.toString().trim()
+        val emailAtual = auth.currentUser?.email ?: ""
 
-        if (nome.isEmpty() || email.isEmpty()) {
-            Toast.makeText(requireContext(), "Preencha todos os campos", Toast.LENGTH_SHORT).show()
+// Não permite trocar o email para outro diferente do atual
+        if (email != emailAtual) {
+            Toast.makeText(requireContext(), "Você não pode alterar seu e-mail aqui.", Toast.LENGTH_SHORT).show()
+            binding.editTextEmail.setText(emailAtual)
             return
         }
+
+        if (nome.isEmpty()) {
+            Toast.makeText(requireContext(), "Preencha o nome", Toast.LENGTH_SHORT).show()
+            return
+        }
+
 
         val dbVest = FirebaseDatabase.getInstance()
             .getReference("usuarios")

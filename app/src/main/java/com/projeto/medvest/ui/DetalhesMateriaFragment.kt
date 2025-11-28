@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -13,6 +14,7 @@ import com.google.firebase.database.*
 import com.projeto.medvest.data.Flashcard
 import com.projeto.medvest.databinding.FragmentDetalhesMateriaBinding
 import com.projeto.medvest.ui.adapter.FlashcardAdapter
+import com.projeto.medvest.R
 
 class DetalhesMateriaFragment : Fragment() {
 
@@ -23,7 +25,8 @@ class DetalhesMateriaFragment : Fragment() {
     private val flashcards = mutableListOf<Flashcard>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDetalhesMateriaBinding.inflate(inflater, container, false)
@@ -33,29 +36,48 @@ class DetalhesMateriaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val disciplina = args.disciplina.lowercase()
-        val materia = args.materia.lowercase()
+        val disciplinaKey = args.disciplina.lowercase()
+        val materiaKey = args.materia.lowercase()
 
-        // Voltar
+        // 🔙 Botão de voltar
         binding.toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
 
-        // Títulos
+        // 📌 Inflar menu de busca
+        binding.toolbar.inflateMenu(R.menu.menu_search)
+
+        // 🔍 Configurar barra de busca
+        val searchItem = binding.toolbar.menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+
+        searchView.queryHint = "Pesquisar flashcard"
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?) = false
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filtrarFlashcards(newText ?: "")
+                return true
+            }
+        })
+
+        // 🔠 Títulos
         binding.tituloDisciplina.text = args.disciplina
         binding.tituloMateria.text = args.materia
 
-        // RecyclerView → agora com 2 colunas
-        adapter = FlashcardAdapter(flashcards) { flashcard ->
+        // 📚 Recycler + Adapter
+        adapter = FlashcardAdapter(mutableListOf()) { flashcard ->
             abrirFlashcard(flashcard)
         }
 
         binding.recyclerFlashcards.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerFlashcards.adapter = adapter
 
-        carregarFlashcards(disciplina, materia)
+        // 🔄 Carregar dados do Firebase
+        carregarFlashcards(disciplinaKey, materiaKey)
 
-        // Botão criar flashcard
+        // ➕ Criar flashcard
         binding.btCriarFlashcard.setOnClickListener {
             val action = DetalhesMateriaFragmentDirections
                 .actionDetalhesMateriaFragmentToCriarFlashcardFragment(
@@ -66,6 +88,16 @@ class DetalhesMateriaFragment : Fragment() {
         }
     }
 
+    // 🔍 Filtrar lista
+    private fun filtrarFlashcards(texto: String) {
+        val listaFiltrada = flashcards.filter { f ->
+            f.frente.contains(texto, ignoreCase = true) ||
+                    f.verso.contains(texto, ignoreCase = true)
+        }
+        adapter.atualizarLista(listaFiltrada)
+    }
+
+    // 🔄 Carregar do Firebase
     private fun carregarFlashcards(disciplina: String, materia: String) {
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
@@ -79,6 +111,7 @@ class DetalhesMateriaFragment : Fragment() {
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+
                 flashcards.clear()
 
                 for (item in snapshot.children) {
@@ -86,7 +119,7 @@ class DetalhesMateriaFragment : Fragment() {
                     if (flashcard != null) flashcards.add(flashcard)
                 }
 
-                adapter.notifyDataSetChanged()
+                adapter.atualizarLista(flashcards)
 
                 binding.textSemFlashcards.visibility =
                     if (flashcards.isEmpty()) View.VISIBLE else View.GONE
@@ -99,8 +132,6 @@ class DetalhesMateriaFragment : Fragment() {
     private fun abrirFlashcard(flashcard: Flashcard) {
         val action = DetalhesMateriaFragmentDirections
             .actionDetalhesMateriaFragmentToFlashcardFragment(flashcard)
-
         findNavController().navigate(action)
     }
-
 }
