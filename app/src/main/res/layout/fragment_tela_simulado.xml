@@ -1,14 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.TelaSimuladoFragment">
+    android:padding="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <!-- BOTÃO VOLTAR -->
+        <ImageView
+            android:id="@+id/btnBackSimulado"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_back"
+            android:padding="4dp"
+            android:layout_marginBottom="12dp"
+            android:foreground="?attr/selectableItemBackgroundBorderless" />
+
+        <!-- CONTAINER DA QUESTÃO -->
+        <LinearLayout
+            android:background="@drawable/bg_container"
+            android:padding="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtEnunciado"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingBottom="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <RadioGroup
+                android:id="@+id/groupAlternativas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+        </LinearLayout>
+
+        <!-- BOTÕES -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnAnterior"
+                android:text="Anterior"
+                android:textColor="#FFF"
+                android:backgroundTint="@color/verde_pescuro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btnProxima"
+                android:text="Próxima"
+                android:textColor="#FFF"
+                android:backgroundTint="@color/verde_pescuro"
+                android:layout_marginStart="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- MURAL DE QUESTÕES -->
+        <LinearLayout
+            android:background="@drawable/bg_container_bege"
+            android:layout_marginTop="24dp"
+            android:padding="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <GridLayout
+                android:id="@+id/gridQuestoes"
+                android:columnCount="8"
+                android:alignmentMode="alignMargins"
+                android:rowOrderPreserved="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- OVERLAY -->
+        <FrameLayout
+            android:id="@+id/overlayResultado"
+            android:visibility="gone"
+            android:background="#AA000000"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    android:id="@+id/progressLoading"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp" />
+
+                <TextView
+                    android:id="@+id/txtResultado"
+                    android:textColor="#FFF"
+                    android:textSize="22sp"
+                    android:paddingTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </FrameLayout>
+
+    </LinearLayout>
+
+</ScrollView>

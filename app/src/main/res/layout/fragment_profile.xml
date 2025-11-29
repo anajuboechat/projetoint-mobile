@@ -86,7 +86,11 @@
             android:textSize="16sp"
             android:textColor="@color/palavras"
             android:hint="@string/hint_edit_email"
-            android:background="@drawable/edittext_background" />
+            android:background="@drawable/edittext_background"
+
+            android:enabled="false"
+            android:focusable="false"
+            android:cursorVisible="false" />
 
         <!-- VESTIBULARES -->
         <TextView

@@ -110,21 +110,11 @@ class ProfileFragment : Fragment() {
     private fun salvarAlteracoes(uid: String) {
 
         val nome = binding.editTextNome.text.toString().trim()
-        val email = binding.editTextEmail.text.toString().trim()
-        val emailAtual = auth.currentUser?.email ?: ""
-
-// Não permite trocar o email para outro diferente do atual
-        if (email != emailAtual) {
-            Toast.makeText(requireContext(), "Você não pode alterar seu e-mail aqui.", Toast.LENGTH_SHORT).show()
-            binding.editTextEmail.setText(emailAtual)
-            return
-        }
 
         if (nome.isEmpty()) {
             Toast.makeText(requireContext(), "Preencha o nome", Toast.LENGTH_SHORT).show()
             return
         }
-
 
         val dbVest = FirebaseDatabase.getInstance()
             .getReference("usuarios")
@@ -140,13 +130,9 @@ class ProfileFragment : Fragment() {
         if (binding.rbEnem.isChecked) lista.add("ENEM")
 
         dbVest.setValue(lista)
-            .addOnSuccessListener {
-                Toast.makeText(requireContext(), "Preferências atualizadas!", Toast.LENGTH_SHORT).show()
-            }
 
         val updates = mapOf(
-            "nome" to nome,
-            "email" to email
+            "nome" to nome
         )
 
         database.child(uid).updateChildren(updates)

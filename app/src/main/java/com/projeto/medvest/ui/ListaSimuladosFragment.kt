@@ -87,7 +87,8 @@ class ListaSimuladosFragment : Fragment() {
                 showBottomSheet(
                     title = "Bloqueado",
                     message = "Esse simulado ainda não foi liberado.",
-                    confirmText = "OK"
+                    confirmText = null,
+                    cancelText = "OK"
                 )
             }
         }

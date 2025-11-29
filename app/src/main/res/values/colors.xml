@@ -18,4 +18,10 @@
     <color name="bege_fundo">#f6fbe2</color>
     <color name="verde_botao">#2E7D32</color>
     <color name="branco">#FFFFFF</color>
+    <color name="verde_claro">#D7E8B5</color>
+    <color name="verde_claro2">#C5DCA2</color>
+    <color name="verde_medio">#B4D48D</color>
+    <color name="verde_pescuro">#4A5A2C</color>
+    <color name="bege_claro">#F2F3D6</color>
+    <color name="verde_radio">#6C8E3F</color>
 </resources>
