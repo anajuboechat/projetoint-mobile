@@ -5,45 +5,147 @@
     android:padding="24dp"
     android:background="#EEF5E5">
 
-    <!-- CONTAINER DO FLASHCARD (vira inteiro) -->
-    <FrameLayout
-        android:id="@+id/cardContainer"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_gravity="center"
-        android:background="@drawable/bg_materia"
-        android:elevation="8dp"
-        android:padding="24dp">
-
-        <!-- FRENTE DO CARTÃO -->
-        <TextView
-            android:id="@+id/textFrente"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:padding="32dp"
-            android:textSize="26sp"
-            android:textStyle="bold"/>
-
-        <!-- VERSO DO CARTÃO -->
-        <TextView
-            android:id="@+id/textTras"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:padding="32dp"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:visibility="gone" />
-    </FrameLayout>
-
-    <!-- BOTÃO DE FECHAR -->
     <ImageView
         android:id="@+id/btFechar"
         android:src="@drawable/ic_close"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="top|end"
-        android:padding="8dp"/>
+        android:padding="8dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="420dp"
+            android:layout_marginTop="40dp">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:src="@drawable/ic_back"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical|start"
+                android:padding="6dp"
+                android:background="@drawable/edit_botoes"
+                android:elevation="6dp" />
+
+            <ImageView
+                android:id="@+id/btnForward"
+                android:src="@drawable/ic_foward"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical|end"
+                android:padding="6dp"
+                android:background="@drawable/edit_botoes"
+                android:elevation="6dp" />
+
+            <FrameLayout
+                android:id="@+id/cardContainer"
+                android:layout_width="260dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_materia"
+                android:elevation="8dp"
+                android:padding="24dp">
+
+                <TextView
+                    android:id="@+id/textFrente"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="32dp"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textTras"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="32dp"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+            </FrameLayout>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/textProgresso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="0 / 0 respondidos"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#3E603B" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnErrei"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Errei"
+                    android:backgroundTint="#D9534F"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/textErros"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Erros: 0"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#D9534F"
+                    android:layout_marginTop="6dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnAcertei"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="8dp"
+                    android:text="Acertei"
+                    android:backgroundTint="#5CB85C"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/textAcertos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Acertos: 0"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#5CB85C"
+                    android:layout_marginTop="6dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 </FrameLayout>

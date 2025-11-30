@@ -5,8 +5,6 @@
     android:id="@+id/main_graph"
     app:startDestination="@id/splashFragment">
 
-    <!-- 🌍 ACTIONS GLOBAIS (ACESSÍVEIS DE QUALQUER FRAGMENT) -->
-
     <action
         android:id="@+id/action_global_authentication"
         app:destination="@id/authentication"
@@ -27,7 +25,6 @@
         android:id="@+id/action_estudosFragment_to_simuladosFragment"
         app:destination="@id/simuladosFragment" />
 
-    <!-- SPLASH -->
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.projeto.medvest.ui.SplashFragment"
@@ -43,14 +40,12 @@
             app:destination="@id/homeFragment" />
     </fragment>
 
-    <!-- HOME -->
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.projeto.medvest.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 
-    <!-- ESTUDOS -->
     <fragment
         android:id="@+id/estudosFragment"
         android:name="com.projeto.medvest.ui.EstudosFragment"
@@ -63,7 +58,6 @@
 
     </fragment>
 
-    <!-- SIMULADOS -->
     <fragment
         android:id="@+id/simuladosFragment"
         android:name="com.projeto.medvest.ui.SimuladosFragment"
@@ -80,7 +74,6 @@
 
     </fragment>
 
-    <!-- LISTA SIMULADOS -->
     <fragment
         android:id="@+id/listaSimuladosFragment"
         android:name="com.projeto.medvest.ui.ListaSimuladosFragment"
@@ -92,13 +85,11 @@
             app:argType="string"
             android:defaultValue="enem" />
 
-
         <action
             android:id="@+id/actionListaSimuladosFragmentToTelaSimuladoFragment"
             app:destination="@id/telaSimuladoFragment" />
     </fragment>
 
-    <!-- TELA SIMULADOS -->
     <fragment
         android:id="@+id/telaSimuladoFragment"
         android:name="com.projeto.medvest.ui.TelaSimuladoFragment"
@@ -109,17 +100,18 @@
             app:argType="string" />
     </fragment>
 
-    <!-- CRIAR MATERIA -->
     <fragment
         android:id="@+id/criarMateriaFragment"
         android:name="com.projeto.medvest.ui.CriarMateriaFragment"
         android:label="fragment_criar_materia"
         tools:layout="@layout/fragment_criar_materia" />
+
     <fragment
         android:id="@+id/materiaFragment"
         android:name="com.projeto.medvest.ui.MateriaFragment"
         android:label="fragment_materia"
         tools:layout="@layout/fragment_materia">
+
         <action
             android:id="@+id/action_materiaFragment_to_criarMateriaFragment"
             app:destination="@id/criarMateriaFragment" />
@@ -140,12 +132,12 @@
 
     </fragment>
 
-
     <fragment
         android:id="@+id/detalhesMateriaFragment"
         android:name="com.projeto.medvest.ui.DetalhesMateriaFragment"
         android:label="fragment_detalhes_materia"
         tools:layout="@layout/fragment_detalhes_materia">
+
         <action
             android:id="@+id/action_detalhesMateriaFragment_to_flashcardFragment"
             app:destination="@id/flashcardFragment" />
@@ -161,12 +153,15 @@
         <action
             android:id="@+id/action_detalhesMateriaFragment_to_criarFlashcardFragment"
             app:destination="@id/criarFlashcardFragment">
+
             <argument
                 android:name="disciplina"
                 app:argType="string" />
+
             <argument
                 android:name="materia"
                 app:argType="string" />
+
         </action>
 
     </fragment>
@@ -185,6 +180,7 @@
             android:name="materia"
             app:argType="string" />
     </fragment>
+
     <fragment
         android:id="@+id/flashcardViewFragment"
         android:name="com.projeto.medvest.ui.FlashcardViewFragment"
@@ -201,15 +197,10 @@
         android:label="Flashcard">
 
         <argument
-            android:name="flashcard"
-            app:argType="com.projeto.medvest.data.Flashcard" />
+            android:name="flashcards"
+            app:argType="com.projeto.medvest.data.Flashcard[]" />
     </fragment>
 
-
-
-
-
-    <!-- AUTH FLOW (SUBGRAFO) -->
     <navigation
         android:id="@+id/authentication"
         app:startDestination="@id/loginFragment">
@@ -241,7 +232,6 @@
             android:label="fragment_register"
             tools:layout="@layout/fragment_register" />
 
-        <!-- ACTION PARA SAIR E VOLTAR AO HOME -->
         <action
             android:id="@+id/action_global_homeFragment"
             app:destination="@id/homeFragment"

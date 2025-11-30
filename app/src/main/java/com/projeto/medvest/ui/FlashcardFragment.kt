@@ -1,27 +1,28 @@
 package com.projeto.medvest.ui
 
-import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.projeto.medvest.data.Flashcard
 import com.projeto.medvest.databinding.FragmentFlashcardBinding
 
 class FlashcardFragment : Fragment() {
 
     private lateinit var binding: FragmentFlashcardBinding
     private val args: FlashcardFragmentArgs by navArgs()
-    private var mostrandoFrente = true   // controla se está na frente ou verso
 
-    companion object {
-        private const val TAG = "FlashcardFragment"
-    }
+    private var mostrandoFrente = true
+    private var acertos = 0
+    private var erros = 0
+
+    private var indexAtual = 0
+    private lateinit var flashcards: List<Flashcard>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +30,6 @@ class FlashcardFragment : Fragment() {
     ): View {
         binding = FragmentFlashcardBinding.inflate(inflater, container, false)
 
-        /** Aumenta o realismo do efeito 3D */
         val scale = requireContext().resources.displayMetrics.density
         binding.cardContainer.cameraDistance = 12000 * scale
 
@@ -39,53 +39,82 @@ class FlashcardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val flashcard = args.flashcard
-        Log.d(TAG, "Recebido: frente=${flashcard.frente}, verso=${flashcard.verso}")
+        flashcards = args.flashcards.toList()
 
-        // Definindo textos
-        binding.textFrente.text = flashcard.frente
-        binding.textTras.text = flashcard.verso
+        atualizarFlashcard()
+        atualizarProgresso()
 
-        // Estado inicial
+        binding.cardContainer.setOnClickListener { animarFlip() }
+
+        binding.btFechar.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding.btnAcertei.setOnClickListener {
+            acertos++
+            binding.textAcertos.text = "Acertos: $acertos"
+            irParaProximo()
+        }
+
+        binding.btnErrei.setOnClickListener {
+            erros++
+            binding.textErros.text = "Erros: $erros"
+            irParaProximo()
+        }
+
+        binding.btnForward.setOnClickListener { irParaProximo() }
+        binding.btnBack.setOnClickListener { irParaAnterior() }
+    }
+
+    private fun atualizarFlashcard() {
+        val fc = flashcards[indexAtual]
+
+        binding.textFrente.text = fc.frente
+        binding.textTras.text = fc.verso
+
         binding.textFrente.visibility = View.VISIBLE
         binding.textTras.visibility = View.GONE
 
-        /** Clique → FLIP */
-        binding.cardContainer.setOnClickListener {
-            animarFlip()
-        }
+        mostrandoFrente = true
+    }
 
-        /** Botão para sair */
-        binding.btFechar.setOnClickListener {
-            findNavController().popBackStack()
+    private fun atualizarProgresso() {
+        binding.textProgresso.text = "${indexAtual + 1} / ${flashcards.size}"
+    }
+
+    private fun irParaProximo() {
+        if (indexAtual < flashcards.size - 1) {
+            indexAtual++
+            atualizarFlashcard()
+            atualizarProgresso()
+        }
+    }
+
+    private fun irParaAnterior() {
+        if (indexAtual > 0) {
+            indexAtual--
+            atualizarFlashcard()
+            atualizarProgresso()
         }
     }
 
     private fun animarFlip() {
 
         val viewOut = if (mostrandoFrente) binding.textFrente else binding.textTras
-        val viewIn  = if (mostrandoFrente) binding.textTras else binding.textFrente
+        val viewIn = if (mostrandoFrente) binding.textTras else binding.textFrente
 
-        /** Primeira parte do giro → some */
-        val animOut = ObjectAnimator.ofFloat(binding.cardContainer, "rotationY", 0f, 90f).apply {
-            duration = 150
-        }
+        val animOut = ObjectAnimator.ofFloat(binding.cardContainer, "rotationY", 0f, 90f)
+        animOut.duration = 150
 
-        /** Segunda parte do giro → aparece */
-        val animIn = ObjectAnimator.ofFloat(binding.cardContainer, "rotationY", -90f, 0f).apply {
-            duration = 150
-        }
+        val animIn = ObjectAnimator.ofFloat(binding.cardContainer, "rotationY", -90f, 0f)
+        animIn.duration = 150
 
         animOut.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator) {
-
-                // Troca qual lado está visível
+            override fun onAnimationEnd(animation: android.animation.Animator) {
                 viewOut.visibility = View.GONE
                 viewIn.visibility = View.VISIBLE
 
-                // Alterna estado
                 mostrandoFrente = !mostrandoFrente
-
                 animIn.start()
             }
         })

@@ -76,6 +76,8 @@ class MateriaFragment : Fragment() {
         })
 
         // Adapter
+        // Adapter
+// Adapter
         adapter = DisciplinaAdapter(listaFiltrada) { materia ->
             val action = MateriaFragmentDirections
                 .actionMateriaFragmentToDetalhesMateriaFragment(
@@ -86,8 +88,17 @@ class MateriaFragment : Fragment() {
         }
         binding.recyclerDisciplinas.adapter = adapter
 
-        // Carregar do Firebase
+// 🔥 Clique do botão (AGORA ESTÁ CERTO)
+        binding.buttonAdicionarMateria.setOnClickListener {
+            val action = MateriaFragmentDirections
+                .actionMateriaFragmentToCriarMateriaFragment()
+            findNavController().navigate(action)
+        }
+
+// Carregar do Firebase
         carregarMaterias()
+
+
     }
 
     private fun carregarMaterias() {

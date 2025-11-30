@@ -1,6 +1,7 @@
 package com.projeto.medvest.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +23,8 @@ class DetalhesMateriaFragment : Fragment() {
     private lateinit var binding: FragmentDetalhesMateriaBinding
 
     private lateinit var adapter: FlashcardAdapter
-    private val flashcards = mutableListOf<Flashcard>()
+    private val flashcards = mutableListOf<Flashcard>()   // lista original
+    private var listaVisivel = mutableListOf<Flashcard>() // lista filtrada
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,18 +38,16 @@ class DetalhesMateriaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val disciplinaKey = args.disciplina.lowercase()
-        val materiaKey = args.materia.lowercase()
+        val disciplinaKey = args.disciplina   // ❗ sem lowercase
+        val materiaKey = args.materia         // ❗ sem lowercase
 
-        // 🔙 Botão de voltar
+        // Botão voltar
         binding.toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
 
-        // 📌 Inflar menu de busca
+        // Toolbar com search
         binding.toolbar.inflateMenu(R.menu.menu_search)
-
-        // 🔍 Configurar barra de busca
         val searchItem = binding.toolbar.menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
@@ -55,29 +55,26 @@ class DetalhesMateriaFragment : Fragment() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?) = false
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 filtrarFlashcards(newText ?: "")
                 return true
             }
         })
 
-        // 🔠 Títulos
+        // Títulos
         binding.tituloDisciplina.text = args.disciplina
         binding.tituloMateria.text = args.materia
 
-        // 📚 Recycler + Adapter
-        adapter = FlashcardAdapter(mutableListOf()) { flashcard ->
-            abrirFlashcard(flashcard)
-        }
+        // Adapter
+        adapter = FlashcardAdapter(listaVisivel) { abrirFlashcards() }
 
         binding.recyclerFlashcards.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerFlashcards.adapter = adapter
 
-        // 🔄 Carregar dados do Firebase
+        // Carregar flashcards
         carregarFlashcards(disciplinaKey, materiaKey)
 
-        // ➕ Criar flashcard
+        // Criar novo flashcard
         binding.btCriarFlashcard.setOnClickListener {
             val action = DetalhesMateriaFragmentDirections
                 .actionDetalhesMateriaFragmentToCriarFlashcardFragment(
@@ -88,20 +85,25 @@ class DetalhesMateriaFragment : Fragment() {
         }
     }
 
-    // 🔍 Filtrar lista
+    // FILTRAGEM FUNCIONANDO
     private fun filtrarFlashcards(texto: String) {
-        val listaFiltrada = flashcards.filter { f ->
-            f.frente.contains(texto, ignoreCase = true) ||
-                    f.verso.contains(texto, ignoreCase = true)
+        listaVisivel = if (texto.isEmpty()) {
+            flashcards.toMutableList()
+        } else {
+            flashcards.filter { f ->
+                f.frente.contains(texto, ignoreCase = true) ||
+                        f.verso.contains(texto, ignoreCase = true)
+            }.toMutableList()
         }
-        adapter.atualizarLista(listaFiltrada)
+
+        adapter.atualizarLista(listaVisivel)
     }
 
-    // 🔄 Carregar do Firebase
+    // CARREGAMENTO DO FIREBASE
     private fun carregarFlashcards(disciplina: String, materia: String) {
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
-        val ref = FirebaseDatabase.getInstance()
+        val flashcardsRef = FirebaseDatabase.getInstance()
             .getReference("usuarios")
             .child(uid)
             .child("categoria")
@@ -109,17 +111,19 @@ class DetalhesMateriaFragment : Fragment() {
             .child(materia)
             .child("flashcards")
 
-        ref.addValueEventListener(object : ValueEventListener {
+        flashcardsRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+
+                Log.d("DEBUG_SNAPSHOT", snapshot.value?.toString() ?: "snapshot vazio")
 
                 flashcards.clear()
 
                 for (item in snapshot.children) {
-                    val flashcard = item.getValue(Flashcard::class.java)
-                    if (flashcard != null) flashcards.add(flashcard)
+                    item.getValue(Flashcard::class.java)?.let { flashcards.add(it) }
                 }
 
-                adapter.atualizarLista(flashcards)
+                listaVisivel = flashcards.toMutableList()
+                adapter.atualizarLista(listaVisivel)
 
                 binding.textSemFlashcards.visibility =
                     if (flashcards.isEmpty()) View.VISIBLE else View.GONE
@@ -129,9 +133,12 @@ class DetalhesMateriaFragment : Fragment() {
         })
     }
 
-    private fun abrirFlashcard(flashcard: Flashcard) {
+    // ABRIR FLASHCARDS NA ORDEM CORRETA
+    private fun abrirFlashcards() {
         val action = DetalhesMateriaFragmentDirections
-            .actionDetalhesMateriaFragmentToFlashcardFragment(flashcard)
+            .actionDetalhesMateriaFragmentToFlashcardFragment(
+                listaVisivel.toTypedArray()
+            )
         findNavController().navigate(action)
     }
 }

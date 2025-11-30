@@ -1,14 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.adapter.ViewPagerAdapterFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/textProgresso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Card 1 de 10"
+        android:textStyle="bold"
+        android:textSize="18sp"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textResumo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Acertos: 0 | Erros: 0"
+        android:layout_marginTop="6dp"
+        android:textSize="16sp"/>
+
+    <FrameLayout
+        android:id="@+id/cardContainer"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/textFrente"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:text="Frente"/>
+
+        <TextView
+            android:id="@+id/textTras"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:visibility="gone"
+            android:text="Verso"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/btnDificil"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:text="Difícil"/>
+
+        <Button
+            android:id="@+id/btnBom"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:text="Bom"/>
+
+        <Button
+            android:id="@+id/btnFacil"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:text="Fácil"/>
+    </LinearLayout>
+
+</LinearLayout>
