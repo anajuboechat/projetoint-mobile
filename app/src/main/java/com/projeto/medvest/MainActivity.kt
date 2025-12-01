@@ -32,9 +32,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.splashFragment,
                 R.id.loginFragment,
                 R.id.registerFragment,
-                R.id.recoverAccountFragment,
-                R.id.materiaFragment,
-                R.id.detalhesMateriaFragment  -> {
+                R.id.recoverAccountFragment, -> {
                     binding.navBar.visibility = View.GONE
                     binding.btnBack.visibility = View.GONE
                     binding.btnLogout.visibility = View.GONE

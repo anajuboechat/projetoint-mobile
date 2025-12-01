@@ -1,15 +1,16 @@
 package com.projeto.medvest.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.projeto.medvest.R
@@ -17,6 +18,7 @@ import com.projeto.medvest.data.DisciplinaComMaterias
 import com.projeto.medvest.data.Materia
 import com.projeto.medvest.databinding.FragmentMateriaBinding
 import com.projeto.medvest.ui.adapter.DisciplinaAdapter
+import com.projeto.medvest.util.showBottomSheet
 
 class MateriaFragment : Fragment() {
 
@@ -37,63 +39,44 @@ class MateriaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Toolbar
-        binding.toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
-        binding.toolbar.inflateMenu(R.menu.menu_search)
+        configurarSearchView()
 
-        val searchItem = binding.toolbar.menu.findItem(R.id.action_search)
-        val searchView = searchItem.actionView as SearchView
+        binding.recyclerDisciplinas.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
-        searchView.queryHint = "Pesquisar matéria"
+        carregarMaterias()
+
+        binding.buttonAdicionarMateria.setOnClickListener {
+            val action = MateriaFragmentDirections.actionMateriaFragmentToCriarMateriaFragment()
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun configurarSearchView() {
+        val searchView = binding.searchView
+
+        // Remove fundo padrão
+        val searchPlate = searchView.findViewById<View>(androidx.appcompat.R.id.search_plate)
+        searchPlate.setBackgroundResource(0)
+
+        // Ícone da lupa branco
+        val searchIcon = searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_mag_icon)
+        searchIcon.setColorFilter(Color.WHITE)
+
+        // Texto da pesquisa branco
+        val searchText = searchView.findViewById<android.widget.EditText>(androidx.appcompat.R.id.search_src_text)
+        searchText.setTextColor(Color.WHITE)
+        searchText.setHintTextColor(Color.WHITE)
+
+        searchView.queryHint = "Pesquisar"
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                filtrarMaterias(query ?: "")
-                return true
-            }
-
+            override fun onQueryTextSubmit(query: String?) = false
             override fun onQueryTextChange(newText: String?): Boolean {
                 filtrarMaterias(newText ?: "")
                 return true
             }
         })
-
-        // RecyclerView
-        binding.recyclerDisciplinas.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-
-        val spacingInDp = 40
-        val spacingInPx = (spacingInDp * resources.displayMetrics.density).toInt()
-
-        binding.recyclerDisciplinas.addItemDecoration(object : RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(
-                outRect: android.graphics.Rect,
-                view: View,
-                parent: RecyclerView,
-                state: RecyclerView.State
-            ) {
-                outRect.bottom = spacingInPx
-            }
-        })
-
-        adapter = DisciplinaAdapter(listaFiltrada) { materia ->
-            val action = MateriaFragmentDirections
-                .actionMateriaFragmentToDetalhesMateriaFragment(
-                    disciplina = materia.disciplina,
-                    materia = materia.nome
-                )
-            findNavController().navigate(action)
-        }
-        binding.recyclerDisciplinas.adapter = adapter
-
-        binding.buttonAdicionarMateria.setOnClickListener {
-            val action = MateriaFragmentDirections
-                .actionMateriaFragmentToCriarMateriaFragment()
-            findNavController().navigate(action)
-        }
-
-        carregarMaterias()
-
-
     }
 
     private fun carregarMaterias() {
@@ -117,26 +100,39 @@ class MateriaFragment : Fragment() {
                     )
                 }
 
-                listaDisciplinas.add(
-                    DisciplinaComMaterias(
-                        disciplina = nomeDisciplina,
-                        materias = materias
-                    )
-                )
+                listaDisciplinas.add(DisciplinaComMaterias(nomeDisciplina, materias))
             }
 
-            // Inicializar lista filtrada
             listaFiltrada.clear()
             listaFiltrada.addAll(listaDisciplinas)
-            adapter.notifyDataSetChanged()
 
+            atualizarAdapter()
         }.addOnFailureListener {
             Toast.makeText(requireContext(), "Erro ao carregar matérias", Toast.LENGTH_SHORT).show()
         }
     }
 
+    private fun atualizarAdapter() {
+        adapter = DisciplinaAdapter(
+            lista = listaFiltrada,
+            onClick = { materia ->
+                val action = MateriaFragmentDirections.actionMateriaFragmentToDetalhesMateriaFragment(
+                    disciplina = materia.disciplina,
+                    materia = materia.nome
+                )
+                findNavController().navigate(action)
+            },
+            onDelete = { materia ->
+                abrirBottomSheetExcluirMateria(materia)
+            }
+        )
+
+        binding.recyclerDisciplinas.adapter = adapter
+    }
+
     private fun filtrarMaterias(query: String) {
         val texto = query.lowercase()
+
         listaFiltrada.clear()
 
         for (disciplina in listaDisciplinas) {
@@ -145,16 +141,41 @@ class MateriaFragment : Fragment() {
             }
 
             if (materiasFiltradas.isNotEmpty()) {
-                listaFiltrada.add(
-                    DisciplinaComMaterias(
-                        disciplina = disciplina.disciplina,
-                        materias = materiasFiltradas
-                    )
-                )
+                listaFiltrada.add(DisciplinaComMaterias(disciplina.disciplina, materiasFiltradas))
             }
         }
 
-        adapter.notifyDataSetChanged()
+        atualizarAdapter()
+    }
+
+    private fun abrirBottomSheetExcluirMateria(materia: Materia) {
+        showBottomSheet(
+            title = "Excluir Matéria",
+            message = "Deseja excluir a matéria \"${materia.nome}\" e todos os seus flashcards?",
+            confirmText = "Excluir",
+            cancelText = "Cancelar",
+            onConfirm = { excluirMateria(materia) }
+        )
+    }
+
+    private fun excluirMateria(materia: Materia) {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        val ref = FirebaseDatabase.getInstance()
+            .getReference("usuarios")
+            .child(uid)
+            .child("categoria")
+            .child(materia.disciplina)
+            .child(materia.nome)
+
+        ref.removeValue()
+            .addOnSuccessListener {
+                Toast.makeText(requireContext(), "Matéria excluída", Toast.LENGTH_SHORT).show()
+                carregarMaterias()
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Erro ao excluir matéria", Toast.LENGTH_SHORT).show()
+            }
     }
 
     override fun onDestroyView() {

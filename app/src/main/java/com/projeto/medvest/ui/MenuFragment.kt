@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.projeto.medvest.R
 import com.projeto.medvest.databinding.FragmentMenuBinding
-
 
 class MenuFragment : Fragment() {
     private var _binding: FragmentMenuBinding? = null
@@ -18,11 +18,27 @@ class MenuFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMenuBinding.inflate(inflater,container,false)
+        _binding = FragmentMenuBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    // Use onViewCreated for setting listeners
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        binding.quimica.setOnClickListener {
+            val bundle = Bundle().apply { putString("materia", "quimica") }
+            findNavController().navigate(R.id.action_menuFragment_to_conteudosFragment, bundle)
+        }
+        binding.fisica.setOnClickListener {
+            val bundle = Bundle().apply { putString("materia", "fisica") }
+            findNavController().navigate(R.id.action_menuFragment_to_conteudosFragment, bundle)
+        }
+        binding.biologia.setOnClickListener {
+            val bundle = Bundle().apply { putString("materia", "biologia") }
+            findNavController().navigate(R.id.action_menuFragment_to_conteudosFragment, bundle)
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

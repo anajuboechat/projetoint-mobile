@@ -87,9 +87,32 @@
         android:id="@+id/menuFragment"
         android:name="com.projeto.medvest.ui.MenuFragment"
         android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" />
+        tools:layout="@layout/fragment_menu">
+        <action
+            android:id="@+id/action_menuFragment_to_conteudosFragment"
+            app:destination="@id/conteudosFragment" />
+    </fragment>
 
-
+    <fragment
+        android:id="@+id/conteudosFragment"
+        android:name="com.projeto.medvest.ui.ConteudosFragment"
+        android:label="ConteudosFragment"
+        tools:layout="@layout/fragment_conteudos">
+        <action
+            android:id="@+id/action_conteudos_to_detalhesConteudo"
+            app:destination="@id/detalhesConteudoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalhesConteudoFragment"
+        android:name="com.projeto.medvest.ui.DetalhesConteudoFragment"
+        android:label="Detalhes do Conteúdo" >
+        <argument
+            android:name="materia"
+            app:argType="string" />
+        <argument
+            android:name="subtopico"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/listaSimuladosFragment"
         android:name="com.projeto.medvest.ui.ListaSimuladosFragment"

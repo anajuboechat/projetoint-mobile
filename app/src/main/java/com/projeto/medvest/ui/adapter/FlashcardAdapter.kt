@@ -34,7 +34,6 @@ class FlashcardAdapter(
 
     override fun getItemCount() = lista.size
 
-    /** 🔥 IMPORTANTE: Atualiza a lista corretamente */
     fun atualizarLista(novaLista: List<Flashcard>) {
         lista.clear()
         lista.addAll(novaLista)

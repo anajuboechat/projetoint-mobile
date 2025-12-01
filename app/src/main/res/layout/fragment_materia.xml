@@ -5,18 +5,23 @@
     android:layout_height="match_parent"
     tools:context=".ui.MateriaFragment">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:layout_marginTop="30dp"
-        android:id="@+id/toolbar"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:elevation="4dp"
-        android:backgroundTint="@color/fundo"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:iconifiedByDefault="false"
+        android:queryHint="Pesquisar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:navigationIcon="@drawable/ic_back" />
+        android:background="@drawable/search_view_background"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingBottom="8dp" />
 
     <TextView
         android:id="@+id/textTitulo"
@@ -26,7 +31,7 @@
         android:textSize="30sp"
         android:textColor="@color/palavras"
         android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toBottomOf="@id/searchView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

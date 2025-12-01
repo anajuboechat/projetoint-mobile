@@ -64,7 +64,9 @@ class FlashcardFragment : Fragment() {
 
         binding.btnForward.setOnClickListener { irParaProximo() }
         binding.btnBack.setOnClickListener { irParaAnterior() }
+
     }
+
 
     private fun atualizarFlashcard() {
         val fc = flashcards[indexAtual]
@@ -121,4 +123,5 @@ class FlashcardFragment : Fragment() {
 
         animOut.start()
     }
+
 }

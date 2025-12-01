@@ -12,7 +12,8 @@ import com.projeto.medvest.data.Materia
 
 class DisciplinaAdapter(
     private val lista: List<DisciplinaComMaterias>,
-    private val onClick: (Materia) -> Unit
+    private val onClick: (Materia) -> Unit,
+    private val onDelete: (Materia) -> Unit
 ) : RecyclerView.Adapter<DisciplinaAdapter.DisciplinaViewHolder>() {
 
     inner class DisciplinaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -28,12 +29,14 @@ class DisciplinaAdapter(
 
     override fun onBindViewHolder(holder: DisciplinaViewHolder, position: Int) {
         val item = lista[position]
+
         holder.nomeDisciplina.text = item.disciplina
 
         holder.recyclerMaterias.layoutManager =
             LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
 
-        holder.recyclerMaterias.adapter = MateriaAdapter(item.materias, onClick)
+        holder.recyclerMaterias.adapter =
+            MateriaAdapter(item.materias, onClick, onDelete)
     }
 
     override fun getItemCount() = lista.size
