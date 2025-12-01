@@ -13,7 +13,8 @@
         android:text="@string/text_criar_flashcard_disciplina"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:paddingBottom="4dp" />
+        android:paddingBottom="4dp"
+        android:textColor="@color/palavras"/>
 
     <!-- RecyclerView horizontal para matérias -->
     <androidx.recyclerview.widget.RecyclerView

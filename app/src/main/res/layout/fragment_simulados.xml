@@ -11,17 +11,6 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <ImageView
-            android:id="@+id/btnBackSimulados"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_back"
-            android:padding="4dp"
-            android:layout_gravity="start"
-            android:layout_marginBottom="12dp"
-            android:foreground="?attr/selectableItemBackgroundBorderless"/>
-
-
         <TextView
         android:id="@+id/titleSimulados"
         android:layout_width="wrap_content"
@@ -29,14 +18,14 @@
         android:text="Simulados"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:textColor="#333"
+        android:textColor="@color/palavras"
         android:layout_marginBottom="12dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Escolha um vestibular para praticar:"
-        android:textColor="#444"
+        android:textColor="@color/palavras"
         android:textSize="16sp"
         android:layout_marginBottom="24dp" />
 

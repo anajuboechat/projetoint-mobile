@@ -41,9 +41,6 @@ class ListaSimuladosFragment : Fragment() {
 
         val endIndex = startIndex + 4
 
-        binding.btnBackSimulados.setOnClickListener {
-            findNavController().popBackStack()
-        }
 
         for (i in startIndex..endIndex) {
 

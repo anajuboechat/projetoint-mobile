@@ -37,7 +37,7 @@
 
         <action
             android:id="@+id/action_splashFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/menuFragment" />
     </fragment>
 
     <fragment
@@ -73,6 +73,22 @@
             app:destination="@id/listaSimuladosFragment" />
 
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.projeto.medvest.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/notificacoesFragment"
+        android:name="com.projeto.medvest.ui.profile.NotificacoesFragment"
+        android:label="fragment_notificacoes"
+        tools:layout="@layout/fragment_notificacoes" />
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.projeto.medvest.ui.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" />
+
 
     <fragment
         android:id="@+id/listaSimuladosFragment"

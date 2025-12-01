@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.projeto.medvest.databinding.FragmentSimuladosBinding
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.appbar.MaterialToolbar
 import com.projeto.medvest.R
 
 class SimuladosFragment : Fragment() {
@@ -48,9 +49,6 @@ class SimuladosFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        binding.btnBackSimulados.setOnClickListener {
-            findNavController().popBackStack()
-        }
     }
 
     override fun onDestroyView() {

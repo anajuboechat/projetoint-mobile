@@ -11,19 +11,6 @@
         android:gravity="center_horizontal"
         android:padding="24dp">
 
-
-
-        <ImageView
-            android:id="@+id/btnBackSimulados"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_back"
-            android:padding="4dp"
-            android:layout_gravity="start"
-            android:layout_marginTop="48dp"
-            android:layout_marginBottom="12dp"
-            android:foreground="?attr/selectableItemBackgroundBorderless"/>
-
         <TextView
             android:id="@+id/tituloListaSimulados"
             android:layout_width="wrap_content"
