@@ -1,80 +1,88 @@
 <resources>
+    <!-- App -->
     <string name="app_name">MedVest+</string>
     <string name="hello_blank_fragment">faz alguma coisa, pfv</string>
 
     <!-- Login -->
+    <string name="text_title_login_fragment">Login</string>
     <string name="hint_edit_email">Digite seu e-mail</string>
     <string name="hint_edit_password">Digite sua senha</string>
-
-    <string name="text_tile_warning">Atenção</string>
-    <string name="text_button_warning">Enviar</string>
-    <string name="password_empty">Preencha a senha!</string>
-    <string name="passord_text">Senha</string>
-    <string name="email_empty">Preencha seu email!</string>
     <string name="email_text">E-mail</string>
+    <string name="password_text">Senha</string>
     <string name="name_text">Nome</string>
     <string name="text_continue">Continue</string>
-
-    <string name="text_title_login_fragment">Login</string>
     <string name="text_button_register_login_fragment">Criar conta</string>
     <string name="text_button_recover_login_fragment">Recuperar conta</string>
-
-    <string name="email_empty_register_fragment">Preencha um e-mail válido.</string>
-    <string name="password_empty_register_gragment">Preencha uma senha.</string>
-    <string name="text_button_register_fragment">Enviar</string>
-    <string name="text_title_toolbar_register_fragment">Criar conta</string>
-    <string name="text_salvar">Salvar</string>
-
-    <string name="text_info_recover_account_fragment">Informe seu email de cadastro para receber \n um link para alteração de senha.</string>
-    <string name="text_title_verifyfragment">Verificar a conta</string>
-    <string name="text_title_toolbar_recover_account_fragment">Recuperar conta</string>
-
-
-    <string name="text_title_toolbar_profile">Tela de perfil</string>
-    <string name="text_button_recover_account_fragment">Deseja enviar um link para recuperação de senha?</string>
+    <string name="email_empty">Preencha seu email!</string>
+    <string name="password_empty">Preencha a senha!</string>
     <string name="text_tela_login_entrar">Entrar</string>
     <string name="text_tela_login_insiradados">Insira seus dados para continuar</string>
-    <string name="text_button_registeraccount_fragment">Criar conta</string>
+
+    <!-- Registration -->
+    <string name="text_title_toolbar_register_fragment">Criar conta</string>
+    <string name="text_button_register_fragment">Enviar</string>
+    <string name="email_empty_register_fragment">Preencha um e-mail válido.</string>
+    <string name="password_empty_register_fragment">Preencha uma senha.</string>
     <string name="hint_edit_name">Digite o seu nome de usuário</string>
+    <string name="hint_edit_name2">Preencha seu nome</string>
+    <string name="text_button_registeraccount_fragment">Criar conta</string>
+    <string name="text_salvar">Salvar</string>
+
+    <!-- Recover Account -->
+    <string name="text_info_recover_account_fragment">
+        Informe seu email de cadastro para receber \n um link para alteração de senha.
+    </string>
+    <string name="text_title_toolbar_recover_account_fragment">Recuperar conta</string>
+    <string name="text_title_verifyfragment">Verificar a conta</string>
+    <string name="text_button_recover_account_fragment">Deseja enviar um link para recuperação de senha?</string>
+
+    <!-- Profile -->
+    <string name="text_title_toolbar_profile">Tela de perfil</string>
     <string name="text_logout_profile">Sair da Conta</string>
-    <string name="text_profile_salvar_tudo"> Salvar Tudo</string>
+    <string name="text_profile_salvar_tudo">Salvar Tudo</string>
+    <string name="foto_atualizada">Foto atualizada!</string>
+    <string name="erro_salvar_foto">Erro ao salvar foto!</string>
+    <string name="text_profile_vestibulares_preferencia">Vestibulares de preferência:</string>
     <string name="text_enem">Enem</string>
     <string name="text_uerj">UERJ</string>
     <string name="text_unicamp">UNICAMP</string>
     <string name="text_usp">USP</string>
-    <string name="text_profile_vestibulares_preferencia">Vestibulares de preferência:</string>
 
     <!-- Menu -->
-    <string name="menu_quimica">Quimica</string>
-    <string name="menu_fisica">Fisica</string>
+    <string name="menu_quimica">Química</string>
+    <string name="menu_fisica">Física</string>
     <string name="menu_biologia">Biologia</string>
 
-    <!-- BottomSheet -->
+    <!-- BottomSheet / Dialogs -->
     <string name="text_button_dialog_confirm_logout">Sair</string>
     <string name="text_title_dialog_confirm_logout">Confirmação</string>
     <string name="text_message_dialog_confirm_logout">Tem certeza que deseja sair?</string>
+    <string name="text_button_dialog_cancel">Cancelar</string>
 
     <!-- Flashcards -->
     <string name="text_flashcards_menu_title">Seus Flashcards</string>
     <string name="text_flashcards_menu_biologia">Biologia</string>
     <string name="text_flashcards_menu_fisica">Física</string>
     <string name="text_flashcards_menu_quimica">Química</string>
-    <string name="adicionar_novo_flashcard"> Adicionar nova Matéria</string>
+    <string name="adicionar_novo_flashcard">Adicionar nova Matéria</string>
     <string name="adicionar_nova_materia">Criação de Matéria</string>
     <string name="hint_nome_criar_flashcard">Nome do Flashcard</string>
-    <string name="hint_nome_criar_materia">Nome da Materia</string>
+    <string name="hint_nome_criar_materia">Nome da Matéria</string>
     <string name="text_criar_flashcard_disciplina">Disciplina</string>
     <string name="text_salvar_materia_fragment_materia">Salvar</string>
     <string name="text_criar_flashcard_title">Criar Flashcard</string>
     <string name="text_criar_flashcard_frente">Frente</string>
-    <string name="crair_flashcard_verso">Verso</string>
-    <string name="hint_criar_flashcard_frente"> Digite a frente do flashcard</string>
-    <string name="hint_criar_flashcard_verso"> Digite o verso do flashcard</string>
+    <string name="criar_flashcard_verso">Verso</string>
+    <string name="hint_criar_flashcard_frente">Digite a frente do flashcard</string>
+    <string name="hint_criar_flashcard_verso">Digite o verso do flashcard</string>
     <string name="text_without_flashcard">Nenhum flashcard criado ainda</string>
     <string name="text_materia">Matéria</string>
 
+    <!-- Others -->
     <string name="text_simulados">Simulados</string>
     <string name="text_flashcards">Flashcards</string>
-    <string name="text_button_dialog_cancel">Cancelar</string>
+    <string name="text_tile_warning">Atenção</string>
+    <string name="text_button_warning">Enviar</string>
+
 
 </resources>

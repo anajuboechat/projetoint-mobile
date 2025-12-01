@@ -6,14 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.projeto.medvest.R
-
 
 class DetalhesConteudoFragment : Fragment() {
 
@@ -35,10 +31,12 @@ class DetalhesConteudoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_detalhes_conteudo, container, false)
+
         textoView = view.findViewById(R.id.textoConteudo)
         database = FirebaseDatabase.getInstance().getReference("conteudo")
 
         carregarTexto()
+
         return view
     }
 
@@ -48,12 +46,23 @@ class DetalhesConteudoFragment : Fragment() {
         database.child(materia!!).child(subtopico!!).child("texto")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val texto = snapshot.getValue(String::class.java) ?: "Conteúdo não encontrado"
-                    textoView.text = texto
+
+                    val textoHtml = snapshot.getValue(String::class.java)
+                        ?: "Conteúdo não encontrado"
+
+                    // 👉 INTERPRETAR HTML CORRETAMENTE
+                    textoView.text = HtmlCompat.fromHtml(
+                        textoHtml,
+                        HtmlCompat.FROM_HTML_MODE_LEGACY
+                    )
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(requireContext(), "Erro: ${error.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Erro: ${error.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             })
     }

@@ -17,6 +17,8 @@ import com.projeto.medvest.data.Flashcard
 import com.projeto.medvest.databinding.FragmentDetalhesMateriaBinding
 import com.projeto.medvest.ui.adapter.FlashcardAdapter
 import com.projeto.medvest.util.showBottomSheet
+import androidx.core.text.HtmlCompat
+
 
 class DetalhesMateriaFragment : Fragment() {
 
