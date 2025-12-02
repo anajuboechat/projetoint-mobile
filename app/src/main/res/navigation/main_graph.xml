@@ -17,9 +17,9 @@
 
     <action
         android:id="@+id/action_global_loginFragment"
-        app:destination="@id/loginFragment"
-        app:popUpTo="@id/homeFragment"
-        app:popUpToInclusive="true" />
+        app:destination="@id/menuFragment"
+        app:popUpTo="@id/menuFragment"
+        app:popUpToInclusive="true"/>
 
     <action
         android:id="@+id/action_estudosFragment_to_simuladosFragment"
@@ -270,7 +270,7 @@
 
         <action
             android:id="@+id/action_global_homeFragment"
-            app:destination="@id/homeFragment"
+            app:destination="@id/menuFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
 

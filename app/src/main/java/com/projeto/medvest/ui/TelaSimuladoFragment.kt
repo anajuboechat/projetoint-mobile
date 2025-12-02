@@ -218,7 +218,7 @@ class TelaSimuladoFragment : Fragment() {
                         .findFragmentById(R.id.nav_host_fragment)
                         ?.findNavController()
 
-                    navController?.navigate(R.id.homeFragment)
+                    navController?.navigate(R.id.menuFragment)
 
                 } catch (e: Exception) {
                     e.printStackTrace()
