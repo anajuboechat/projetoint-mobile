@@ -1,17 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="16dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <Button
-        android:id="@+id/btnLimpar"
+    <!-- Título fixo no topo -->
+    <TextView
+        android:id="@+id/txtTitulo"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Limpar"
-        style="@style/ButtonTheme"/>
+        android:layout_height="wrap_content"
+        android:text="Notificações"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:padding="16dp"
+        android:layout_alignParentTop="true" />
 
-</LinearLayout>
+    <!-- Recycler ocupa o espaço entre o título e o botão -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerNotificacoes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:layout_below="@id/txtTitulo"
+        android:layout_above="@id/btnApagarTudo" />
+
+    <!-- Mensagem centralizada quando não há notificações -->
+    <TextView
+        android:id="@+id/txtSemNotificacoes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sem notificações no momento"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:visibility="gone"
+        android:textColor="@android:color/darker_gray"
+        android:layout_centerInParent="true"/>
+
+    <!-- Botão fixo no rodapé -->
+    <ImageButton
+        android:id="@+id/btnApagarTudo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_delete"
+        android:background="@null"
+        android:contentDescription="Apagar tudo"
+        android:padding="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

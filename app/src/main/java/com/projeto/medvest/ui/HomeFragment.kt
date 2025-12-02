@@ -10,7 +10,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.projeto.medvest.databinding.FragmentHomeBinding
 import com.projeto.medvest.util.showBottomSheet
 import com.projeto.medvest.R
-import com.projeto.medvest.ui.profile.NotificacoesFragment
 import com.projeto.medvest.ui.profile.ProfileFragment
 
 class HomeFragment : Fragment() {
