@@ -84,5 +84,10 @@
     <string name="text_tile_warning">Atenção</string>
     <string name="text_button_warning">Enviar</string>
 
+    <!-- Ana Júlia conserta isso dd -->
+    <string name="crair_flashcard_verso">Verso do flashcard</string>
+    <string name="passord_text">Senha</string>
+    <string name="password_empty_register_gragment">Não sei oq poderia ser isso</string>
+
 
 </resources>

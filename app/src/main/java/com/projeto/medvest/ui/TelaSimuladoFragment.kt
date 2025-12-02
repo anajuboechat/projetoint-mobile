@@ -14,6 +14,7 @@ import android.widget.RadioButton
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.FirebaseDatabase
 import com.projeto.medvest.R
 import com.projeto.medvest.databinding.FragmentTelaSimuladoBinding
@@ -92,10 +93,12 @@ class TelaSimuladoFragment : Fragment() {
             btn.setBackgroundColor(Color.GRAY)
             btn.setTextColor(Color.WHITE)
 
-            val params = GridLayout.LayoutParams()
-            params.width = 110
-            params.height = 110
-            params.setMargins(8, 8, 8, 8)
+            val params = GridLayout.LayoutParams().apply {
+                width = 0
+                height = GridLayout.LayoutParams.WRAP_CONTENT
+                columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
+                setMargins(8, 8, 8, 8)
+            }
             btn.layoutParams = params
 
             btn.setOnClickListener {
@@ -113,11 +116,11 @@ class TelaSimuladoFragment : Fragment() {
 
             val q = listaQuestoes[i]
 
-            view.setBackgroundColor(
+            view.setBackgroundResource(
                 when {
-                    i == indexAtual -> Color.BLACK
-                    q.respostaUsuario != null -> Color.GREEN
-                    else -> Color.GRAY
+                    i == indexAtual -> R.drawable.bg_questao_atual
+                    q.respostaUsuario != null -> R.drawable.bg_questao_respondida
+                    else -> R.drawable.bg_questao_neutra
                 }
             )
         }
@@ -136,13 +139,27 @@ class TelaSimuladoFragment : Fragment() {
             radio.text = alt
             radio.textSize = 16f
 
-            // ✅ SUA ALTERAÇÃO — INSERIDA AQUI
-            radio.setBackgroundResource(R.drawable.bg_alternativa)
+                radio.setBackgroundResource(R.drawable.bg_alternativa)
 
             radio.buttonTintList = ColorStateList.valueOf(
                 ContextCompat.getColor(requireContext(), R.color.verde_radio)
             )
-            // ----------------------------------------------------------
+            radio.layoutParams = ViewGroup.MarginLayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+
+            radio.setPadding(32, 24, 32, 24)  // ajusta o mesmo padding do container
+            radio.isClickable = true
+            radio.isFocusable = true
+
+            val params = ViewGroup.MarginLayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            params.topMargin = 12
+            params.bottomMargin = 12
+            radio.layoutParams = params
 
             if (q.respostaUsuario == alt) radio.isChecked = true
 
@@ -180,19 +197,34 @@ class TelaSimuladoFragment : Fragment() {
     }
 
     private fun enviarSimulado() {
-        binding.overlayResultado.visibility = View.VISIBLE
-        binding.txtResultado.text = "Calculando desempenho..."
 
+        binding.overlayResultado.visibility = View.VISIBLE
+        binding.txtResultado.text = "Enviando respostas..."
+        binding.overlayResultado.isClickable = true
         Handler(Looper.getMainLooper()).postDelayed({
 
             var acertos = 0
-
             listaQuestoes.forEach {
                 if (it.respostaUsuario == it.correta) acertos++
             }
 
             binding.txtResultado.text =
                 "Você acertou $acertos de $totalQuestoes questões!"
+
+            Handler(Looper.getMainLooper()).postDelayed({
+
+                try {
+                    val navController = parentFragmentManager
+                        .findFragmentById(R.id.nav_host_fragment)
+                        ?.findNavController()
+
+                    navController?.navigate(R.id.homeFragment)
+
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+
+            }, 2000)
 
         }, 1500)
     }
