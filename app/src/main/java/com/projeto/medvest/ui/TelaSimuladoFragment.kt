@@ -9,6 +9,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.GridLayout
 import android.widget.RadioButton
 import android.widget.TextView
@@ -36,7 +37,6 @@ class TelaSimuladoFragment : Fragment() {
     ): View {
         binding = FragmentTelaSimuladoBinding.inflate(inflater, container, false)
 
-        // Recebendo código do simulado (ex: S1)
         arguments?.getString("codigoSimulado")?.let {
             codigoSimulado = it
         }
@@ -139,19 +139,11 @@ class TelaSimuladoFragment : Fragment() {
             radio.text = alt
             radio.textSize = 16f
 
-                radio.setBackgroundResource(R.drawable.bg_alternativa)
+            radio.setBackgroundResource(R.drawable.bg_alternativa)
 
             radio.buttonTintList = ColorStateList.valueOf(
                 ContextCompat.getColor(requireContext(), R.color.verde_radio)
             )
-            radio.layoutParams = ViewGroup.MarginLayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-
-            radio.setPadding(32, 24, 32, 24)  // ajusta o mesmo padding do container
-            radio.isClickable = true
-            radio.isFocusable = true
 
             val params = ViewGroup.MarginLayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -163,21 +155,19 @@ class TelaSimuladoFragment : Fragment() {
 
             if (q.respostaUsuario == alt) radio.isChecked = true
 
-            binding.groupAlternativas.addView(radio)
-
             radio.setOnClickListener {
                 q.respostaUsuario = alt
                 atualizarGrid()
             }
+
+            binding.groupAlternativas.addView(radio)
         }
 
         binding.btnAnterior.isEnabled = indexAtual > 0
 
-        if (indexAtual == totalQuestoes - 1) {
-            binding.btnProxima.text = "Enviar Respostas"
-        } else {
-            binding.btnProxima.text = "Próxima"
-        }
+        binding.btnProxima.text =
+            if (indexAtual == totalQuestoes - 1) "Enviar Respostas"
+            else "Próxima"
 
         binding.btnAnterior.setOnClickListener {
             indexAtual--
@@ -198,18 +188,32 @@ class TelaSimuladoFragment : Fragment() {
 
     private fun enviarSimulado() {
 
-        binding.overlayResultado.visibility = View.VISIBLE
-        binding.txtResultado.text = "Enviando respostas..."
-        binding.overlayResultado.isClickable = true
+        val overlay = requireActivity().findViewById<FrameLayout>(R.id.globalOverlay)
+        val txt = requireActivity().findViewById<TextView>(R.id.globalOverlayText)
+
+        overlay.visibility = View.VISIBLE
+        txt.text = "Enviando respostas..."
+
         Handler(Looper.getMainLooper()).postDelayed({
 
             var acertos = 0
             listaQuestoes.forEach {
-                if (it.respostaUsuario == it.correta) acertos++
+                val indexResposta = it.alternativas.indexOf(it.respostaUsuario)
+                val letraMarcada = when (indexResposta) {
+                    0 -> "A"
+                    1 -> "B"
+                    2 -> "C"
+                    3 -> "D"
+                    4 -> "E"
+                    else -> ""
+                }
+
+                if (letraMarcada == it.correta) {
+                    acertos++
+                }
             }
 
-            binding.txtResultado.text =
-                "Você acertou $acertos de $totalQuestoes questões!"
+            txt.text = "Você fez $acertos acertos!"
 
             Handler(Looper.getMainLooper()).postDelayed({
 
@@ -218,13 +222,14 @@ class TelaSimuladoFragment : Fragment() {
                         .findFragmentById(R.id.nav_host_fragment)
                         ?.findNavController()
 
+                    overlay.visibility = View.GONE
                     navController?.navigate(R.id.menuFragment)
 
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
 
-            }, 2000)
+            }, 3000)
 
         }, 1500)
     }

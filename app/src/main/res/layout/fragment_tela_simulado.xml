@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- CONTEÚDO PRINCIPAL (ScrollView) -->
+    <!-- CONTEÚDO PRINCIPAL -->
     <ScrollView
+        android:id="@+id/scrollPrincipal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
@@ -64,7 +65,7 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <!-- MURAL DE QUESTÕES -->
+            <!-- MURAL -->
             <LinearLayout
                 android:background="@drawable/bg_container"
                 android:layout_marginTop="24dp"
@@ -96,7 +97,7 @@
 
     </ScrollView>
 
-    <!-- OVERLAY FULLSCREEN (agora cobre tudo) -->
+    <!-- OVERLAY FULLSCREEN -->
     <FrameLayout
         android:id="@+id/overlayResultado"
         android:visibility="gone"
@@ -104,10 +105,9 @@
         android:clickable="true"
         android:focusable="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent">
 
-    <LinearLayout
+        <LinearLayout
             android:orientation="vertical"
             android:gravity="center"
             android:layout_width="match_parent"
@@ -126,6 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+
     </FrameLayout>
 
 </FrameLayout>
