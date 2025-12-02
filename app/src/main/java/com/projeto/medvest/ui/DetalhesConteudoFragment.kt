@@ -15,8 +15,8 @@ class DetalhesConteudoFragment : Fragment() {
 
     private var materia: String? = null
     private var subtopico: String? = null
-    private lateinit var database: DatabaseReference
     private lateinit var textoView: TextView
+    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,40 +27,42 @@ class DetalhesConteudoFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_detalhes_conteudo, container, false)
-
         textoView = view.findViewById(R.id.textoConteudo)
         database = FirebaseDatabase.getInstance().getReference("conteudo")
-
         carregarTexto()
-
         return view
     }
 
     private fun carregarTexto() {
-        if (materia == null || subtopico == null) return
+        if (materia.isNullOrEmpty() || subtopico.isNullOrEmpty()) {
+            textoView.text = "Conteúdo não disponível"
+            return
+        }
 
         database.child(materia!!).child(subtopico!!).child("texto")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-
                     val textoHtml = snapshot.getValue(String::class.java)
-                        ?: "Conteúdo não encontrado"
-
-                    // 👉 INTERPRETAR HTML CORRETAMENTE
-                    textoView.text = HtmlCompat.fromHtml(
-                        textoHtml,
-                        HtmlCompat.FROM_HTML_MODE_LEGACY
-                    )
+                    if (textoHtml.isNullOrEmpty()) {
+                        textoView.text = "Conteúdo não encontrado"
+                    } else {
+                        // Interpretar HTML corretamente
+                        textoView.text = HtmlCompat.fromHtml(
+                            textoHtml,
+                            HtmlCompat.FROM_HTML_MODE_LEGACY
+                        )
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
                     Toast.makeText(
                         requireContext(),
-                        "Erro: ${error.message}",
+                        "Erro ao carregar conteúdo: ${error.message}",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

@@ -30,6 +30,7 @@ class FlashcardFragment : Fragment() {
     ): View {
         binding = FragmentFlashcardBinding.inflate(inflater, container, false)
 
+        // Ajusta distância da câmera para efeito de flip
         val scale = requireContext().resources.displayMetrics.density
         binding.cardContainer.cameraDistance = 12000 * scale
 
@@ -40,16 +41,17 @@ class FlashcardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         flashcards = args.flashcards.toList()
+        indexAtual = args.startIndex
 
-        atualizarFlashcard()
-        atualizarProgresso()
+        mostrarFlashcardAtual()
 
+        // Flip ao clicar no card
         binding.cardContainer.setOnClickListener { animarFlip() }
 
-        binding.btFechar.setOnClickListener {
-            findNavController().popBackStack()
-        }
+        // Fecha fragmento
+        binding.btFechar.setOnClickListener { findNavController().popBackStack() }
 
+        // Contadores
         binding.btnAcertei.setOnClickListener {
             acertos++
             binding.textAcertos.text = "Acertos: $acertos"
@@ -62,22 +64,23 @@ class FlashcardFragment : Fragment() {
             irParaProximo()
         }
 
+        // Navegação entre flashcards
         binding.btnForward.setOnClickListener { irParaProximo() }
         binding.btnBack.setOnClickListener { irParaAnterior() }
-
     }
 
+    private fun mostrarFlashcardAtual() {
+        if (flashcards.isEmpty()) return
 
-    private fun atualizarFlashcard() {
         val fc = flashcards[indexAtual]
-
         binding.textFrente.text = fc.frente
         binding.textTras.text = fc.verso
 
         binding.textFrente.visibility = View.VISIBLE
         binding.textTras.visibility = View.GONE
-
         mostrandoFrente = true
+
+        binding.textProgresso.text = "${indexAtual + 1} / ${flashcards.size}"
     }
 
     private fun atualizarProgresso() {
@@ -87,21 +90,18 @@ class FlashcardFragment : Fragment() {
     private fun irParaProximo() {
         if (indexAtual < flashcards.size - 1) {
             indexAtual++
-            atualizarFlashcard()
-            atualizarProgresso()
+            mostrarFlashcardAtual()
         }
     }
 
     private fun irParaAnterior() {
         if (indexAtual > 0) {
             indexAtual--
-            atualizarFlashcard()
-            atualizarProgresso()
+            mostrarFlashcardAtual()
         }
     }
 
     private fun animarFlip() {
-
         val viewOut = if (mostrandoFrente) binding.textFrente else binding.textTras
         val viewIn = if (mostrandoFrente) binding.textTras else binding.textFrente
 
@@ -115,7 +115,6 @@ class FlashcardFragment : Fragment() {
             override fun onAnimationEnd(animation: android.animation.Animator) {
                 viewOut.visibility = View.GONE
                 viewIn.visibility = View.VISIBLE
-
                 mostrandoFrente = !mostrandoFrente
                 animIn.start()
             }
@@ -123,5 +122,4 @@ class FlashcardFragment : Fragment() {
 
         animOut.start()
     }
-
 }

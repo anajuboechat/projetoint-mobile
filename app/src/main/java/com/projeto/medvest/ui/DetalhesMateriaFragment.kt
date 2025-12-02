@@ -17,8 +17,6 @@ import com.projeto.medvest.data.Flashcard
 import com.projeto.medvest.databinding.FragmentDetalhesMateriaBinding
 import com.projeto.medvest.ui.adapter.FlashcardAdapter
 import com.projeto.medvest.util.showBottomSheet
-import androidx.core.text.HtmlCompat
-
 
 class DetalhesMateriaFragment : Fragment() {
 
@@ -44,15 +42,27 @@ class DetalhesMateriaFragment : Fragment() {
         val disciplinaKey = args.disciplina
         val materiaKey = args.materia
 
-        // Configura SearchView
         configurarSearchView()
 
         binding.tituloDisciplina.text = disciplinaKey
         binding.tituloMateria.text = materiaKey
 
-        adapter = FlashcardAdapter(listaVisivel) { flashcard ->
-            abrirBottomSheetExcluir(flashcard)
-        }
+        adapter = FlashcardAdapter(
+            listaVisivel,
+            onItemClick = { flashcard ->
+                // Ao clicar no flashcard, abre FlashcardFragment com toda a lista e índice atual
+                val index = listaVisivel.indexOf(flashcard)
+                val action = DetalhesMateriaFragmentDirections
+                    .actionDetalhesMateriaFragmentToFlashcardFragment(
+                        flashcards = listaVisivel.toTypedArray(),
+                        startIndex = index
+                    )
+                findNavController().navigate(action)
+            },
+            onDeleteClick = { flashcard ->
+                abrirBottomSheetExcluir(flashcard)
+            }
+        )
 
         binding.recyclerFlashcards.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerFlashcards.adapter = adapter
@@ -71,18 +81,15 @@ class DetalhesMateriaFragment : Fragment() {
 
     private fun configurarSearchView() {
         val searchView = binding.searchView2
-
-        // Define hint
         searchView.queryHint = "Pesquisar flashcard"
-
-        // Mostra teclado e campo expandido
         searchView.isIconified = false
 
-        // Altera cor do ícone de lupa
         val searchIcon = searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_mag_icon)
-        searchIcon.setColorFilter(requireContext().getColor(com.projeto.medvest.R.color.palavras), PorterDuff.Mode.SRC_IN)
+        searchIcon.setColorFilter(
+            requireContext().getColor(com.projeto.medvest.R.color.palavras),
+            PorterDuff.Mode.SRC_IN
+        )
 
-        // Listener de pesquisa
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?) = false
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -106,7 +113,6 @@ class DetalhesMateriaFragment : Fragment() {
 
     private fun carregarFlashcards(disciplina: String, materia: String) {
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
-
         val flashcardsRef = FirebaseDatabase.getInstance()
             .getReference("usuarios")
             .child(uid)
@@ -138,15 +144,12 @@ class DetalhesMateriaFragment : Fragment() {
             message = "Tem certeza que deseja excluir este flashcard?",
             confirmText = "Excluir",
             cancelText = "Cancelar",
-            onConfirm = {
-                deletarFlashcard(flashcard)
-            }
+            onConfirm = { deletarFlashcard(flashcard) }
         )
     }
 
     private fun deletarFlashcard(flashcard: Flashcard) {
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
-
         val ref = FirebaseDatabase.getInstance()
             .getReference("usuarios")
             .child(uid)

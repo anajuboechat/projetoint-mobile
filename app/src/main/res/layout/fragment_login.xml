@@ -82,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/passord_text"
+            android:text="@string/password_text"
             android:textColor="@color/palavras" />
 
         <EditText

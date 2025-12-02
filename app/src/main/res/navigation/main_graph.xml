@@ -220,15 +220,6 @@
             app:argType="string" />
     </fragment>
 
-    <fragment
-        android:id="@+id/flashcardViewFragment"
-        android:name="com.projeto.medvest.ui.FlashcardViewFragment"
-        android:label="FlashcardViewFragment">
-
-        <argument
-            android:name="flashcard"
-            app:argType="com.projeto.medvest.data.Flashcard" />
-    </fragment>
 
     <fragment
         android:id="@+id/flashcardFragment"
@@ -238,7 +229,13 @@
         <argument
             android:name="flashcards"
             app:argType="com.projeto.medvest.data.Flashcard[]" />
+
+        <argument
+            android:name="startIndex"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
+
 
     <navigation
         android:id="@+id/authentication"
