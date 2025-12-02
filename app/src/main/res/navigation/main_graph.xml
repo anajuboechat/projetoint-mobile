@@ -12,6 +12,12 @@
         app:popUpToInclusive="true" />
 
     <action
+        android:id="@+id/action_conteudos_to_questoesFragment"
+        app:destination="@id/questoesFragment"
+        app:popUpTo="@id/homeFragment"
+        app:popUpToInclusive="true" />
+
+    <action
         android:id="@+id/action_global_materiaFragment"
         app:destination="@id/materiaFragment" />
 
@@ -45,6 +51,12 @@
         android:name="com.projeto.medvest.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/questoesFragment"
+        android:name="com.projeto.medvest.ui.QuestoesFragment"
+        android:label="fragment_questoes"
+        tools:layout="@layout/fragment_questoes" />
 
     <fragment
         android:id="@+id/estudosFragment"

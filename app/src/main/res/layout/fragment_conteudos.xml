@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Título da matéria -->
     <TextView
         android:id="@+id/tituloMateria"
         android:layout_width="match_parent"
@@ -14,15 +13,23 @@
         android:text="Matéria"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:paddingBottom="16dp"/>
+        android:paddingBottom="16dp" />
 
-    <!-- RecyclerView para sub-tópicos -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerSubtopicos"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:clipToPadding="false"
-        android:scrollbars="vertical"/>
+        android:scrollbars="vertical" />
+
+    <Button
+        android:id="@+id/btnVerQuestoes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ver questões"
+        android:padding="12dp"
+        android:visibility="gone"
+        android:layout_marginTop="16dp" />
 
 </LinearLayout>
