@@ -17,6 +17,8 @@
     <string name="password_empty">Preencha a senha!</string>
     <string name="text_tela_login_entrar">Entrar</string>
     <string name="text_tela_login_insiradados">Insira seus dados para continuar</string>
+    <string name="password_text2">Confirmar senha</string>
+    <string name="nome_text">Digite seu nome</string>
 
     <!-- Registration -->
     <string name="text_title_toolbar_register_fragment">Criar conta</string>

@@ -12,10 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginHorizontal="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/linearlayout1">
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -23,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="40dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,18 +34,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/linearlayout2">
+
+            <TextView
+                android:id="@+id/textViewNome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_text"
+                android:textColor="@color/palavras"
+                android:layout_marginTop="4dp"/>
+
+            <EditText
+                android:id="@+id/editTextNome"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:inputType="textPersonName"
+                android:hint="@string/nome_text"
+                style="@style/EditTextTheme"
+                android:layout_marginTop="4dp"/>
+
 
             <TextView
                 android:id="@+id/textviewEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/email_text"
+                android:layout_marginTop="16dp"
                 android:textColor="@color/palavras"/>
+
+
 
             <EditText
                 android:id="@+id/editTextEmail"
@@ -76,6 +90,23 @@
                 style="@style/EditTextTheme"
                 android:layout_marginTop="4dp"/>
 
+            <TextView
+                android:id="@+id/textViewSenha2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/password_text2"
+                android:textColor="@color/palavras"
+                android:layout_marginTop="16dp"/>
+
+            <EditText
+                android:id="@+id/editTextSenha2"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:inputType="textPassword"
+                android:hint="Repita sua senha"
+                style="@style/EditTextTheme"
+                android:layout_marginTop="4dp"/>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonCriarconta"
                 android:layout_width="match_parent"
@@ -83,6 +114,7 @@
                 android:text="@string/text_button_registeraccount_fragment"
                 style="@style/ButtonTheme"
                 android:layout_marginTop="16dp" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,7 +129,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/textOu"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5" />
+                    />
 
                 <TextView
                     android:id="@+id/textOu"
@@ -123,7 +155,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- Botão Google -->
             <LinearLayout
                 android:id="@+id/buttonGoogle"
                 android:layout_width="match_parent"
@@ -140,7 +171,6 @@
                 <ImageView
                     android:layout_width="22dp"
                     android:layout_height="22dp"
-                    android:contentDescription="@string/app_name"
                     android:src="@drawable/ic_google" />
 
                 <TextView
@@ -161,10 +191,7 @@
                 android:layout_gravity="center"
                 android:indeterminateTint="@color/palavras"
                 android:layout_marginTop="15dp"
-                android:visibility="invisible"
-                tools:visibility="visible"/>
+                android:visibility="invisible"/>
         </LinearLayout>
     </LinearLayout>
-
-
 </ScrollView>

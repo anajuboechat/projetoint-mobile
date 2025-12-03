@@ -33,7 +33,6 @@ class RegisterFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
 
-    // Launcher do Google Sign-In
     private val googleSignInLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -64,7 +63,6 @@ class RegisterFragment : Fragment() {
 
         auth = FirebaseAuth.getInstance()
 
-        // Configuração Google login
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -86,24 +84,44 @@ class RegisterFragment : Fragment() {
     }
 
     private fun validateFields() {
+        val nome = binding.editTextNome.text.toString().trim()
         val email = binding.editTextEmail.text.toString().trim()
         val senha = binding.editTextSenha.text.toString().trim()
+        val senha2 = binding.editTextSenha2.text.toString().trim()
 
         when {
+            nome.isBlank() -> {
+                showBottomSheet("Digite seu nome.")
+            }
+
             email.isBlank() -> {
-                showBottomSheet(message = getString(R.string.email_empty_register_fragment))
+                showBottomSheet(getString(R.string.email_empty_register_fragment))
             }
+
             senha.isBlank() -> {
-                showBottomSheet(message = getString(R.string.password_empty_register_gragment))
+                showBottomSheet(getString(R.string.password_empty_register_gragment))
             }
+
+            senha2.isBlank() -> {
+                showBottomSheet("Confirme sua senha.")
+            }
+
+            !passwordsMatch(senha, senha2) -> {
+                binding.editTextSenha2.error = "As senhas não coincidem"
+            }
+
             else -> {
                 binding.progressbar.isVisible = true
-                registerUser(email, senha)
+                registerUser(nome, email, senha)
             }
         }
     }
 
-    private fun registerUser(email: String, password: String) {
+    private fun passwordsMatch(s1: String, s2: String): Boolean {
+        return s1 == s2
+    }
+
+    private fun registerUser(nome: String, email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 binding.progressbar.isVisible = false
@@ -111,11 +129,10 @@ class RegisterFragment : Fragment() {
                 if (task.isSuccessful) {
                     val uid = auth.currentUser?.uid ?: return@addOnCompleteListener
 
-                    // salva no realtime database
                     saveUserToRealtime(
                         uid = uid,
                         email = email,
-                        name = "",
+                        name = nome,   // <<<<<<<<<<<<<<<<<<<<<<<< AQUI ENVIA O NOME
                         avatar = ""
                     )
 
@@ -148,11 +165,10 @@ class RegisterFragment : Fragment() {
                     val name = account.displayName ?: ""
                     val avatar = account.photoUrl?.toString() ?: ""
 
-                    // salva no realtime database
                     saveUserToRealtime(
                         uid = uid,
                         email = email,
-                        name = name,
+                        name = name,   // <<<<<< NOME DO GOOGLE
                         avatar = avatar
                     )
 
@@ -164,12 +180,11 @@ class RegisterFragment : Fragment() {
             }
     }
 
-    // ===== SALVAR NO MODELO DO REALTIME DATABASE =====
     private fun saveUserToRealtime(uid: String, email: String, name: String?, avatar: String?) {
 
         val data = mapOf(
             "email" to email,
-            "nome" to (name ?: ""),
+            "nome" to (name ?: ""),        // <<<<  SALVO NO DB
             "avatar" to (avatar ?: ""),
             "ultimoLogin" to Instant.now().toString(),
             "notificacoesFechadas" to false,
