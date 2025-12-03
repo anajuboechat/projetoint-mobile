@@ -15,6 +15,8 @@ import com.google.firebase.database.*
 import com.projeto.medvest.R
 import com.projeto.medvest.data.Subtopico
 import com.projeto.medvest.ui.adapter.SubtopicoAdapter
+import com.projeto.medvest.ui.util.SpaceItemDecoration
+
 
 class ConteudosFragment : Fragment() {
 
@@ -22,8 +24,9 @@ class ConteudosFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var tituloMateria: TextView
     private lateinit var btnVerQuestoes: Button
-    private lateinit var databaseConteudo: DatabaseReference
-    private lateinit var databaseQuestoes: DatabaseReference
+
+    private lateinit var refConteudo: DatabaseReference
+    private lateinit var refQuestoes: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +36,7 @@ class ConteudosFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view = inflater.inflate(R.layout.fragment_conteudos, container, false)
 
         recyclerView = view.findViewById(R.id.recyclerSubtopicos)
@@ -42,73 +45,78 @@ class ConteudosFragment : Fragment() {
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        databaseConteudo = FirebaseDatabase.getInstance().getReference("conteudo")
-        databaseQuestoes = FirebaseDatabase.getInstance().getReference("questoes")
+        refConteudo = FirebaseDatabase.getInstance().getReference("conteudo")
+        refQuestoes = FirebaseDatabase.getInstance().getReference("questoes")
 
         tituloMateria.text = materia?.replaceFirstChar { it.uppercase() }
+        recyclerView.addItemDecoration(SpaceItemDecoration(20))
+
 
         materia?.let { carregarSubtopicos(it) }
 
         return view
     }
 
+    /**
+     * Agora carregamos os subtopicos APENAS pelo nó "questoes".
+     */
     private fun carregarSubtopicos(materia: String) {
-        databaseConteudo.child(materia).addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val subtopicos = mutableListOf<Subtopico>()
-                var primeiroSubtopico: String? = null
 
-                for (sub in snapshot.children) {
-                    val nome = sub.key ?: ""
-                    if (primeiroSubtopico == null) primeiroSubtopico = nome
-                    subtopicos.add(Subtopico(nome))
-                }
-
-                recyclerView.adapter = SubtopicoAdapter(subtopicos) { subtopico ->
-
-                    val bundle = Bundle().apply {
-                        putString("materia", materia)
-                        putString("subtopico", subtopico.nome)
-                    }
-
-                    findNavController().navigate(
-                        R.id.action_conteudos_to_detalhesConteudo,
-                        bundle
-                    )
-                }
-
-                // Após carregar subtopicos, verificar se há questões
-                primeiroSubtopico?.let { verificarQuestoes(materia, it) }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(requireContext(), "Erro: ${error.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
-
-    private fun verificarQuestoes(materia: String, subtopico: String) {
-        databaseQuestoes.child(materia).child(subtopico)
+        refQuestoes.child(materia)
             .addListenerForSingleValueEvent(object : ValueEventListener {
+
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()) {
-                        btnVerQuestoes.visibility = View.VISIBLE
 
-                        btnVerQuestoes.setOnClickListener {
-                            val bundle = Bundle().apply {
-                                putString("materia", materia)
-                                putString("subtopico", subtopico)
-                            }
-
-                            findNavController().navigate(
-                                R.id.action_conteudos_to_questoesFragment,
-                                bundle
-                            )
-                        }
+                    // Nenhuma questão cadastrada para esta matéria
+                    if (!snapshot.exists()) {
+                        Toast.makeText(requireContext(), "Nenhuma questão encontrada.", Toast.LENGTH_SHORT).show()
+                        return
                     }
+
+                    val listaSubtopicos = mutableListOf<Subtopico>()
+
+                    for (sub in snapshot.children) {
+                        val nomeSub = sub.key ?: continue
+                        listaSubtopicos.add(Subtopico(nomeSub))
+                    }
+
+                    recyclerView.adapter = SubtopicoAdapter(listaSubtopicos) { subtopico ->
+
+                        val bundle = Bundle().apply {
+                            putString("materia", materia)
+                            putString("subtopico", subtopico.nome)
+                        }
+
+                        // Abre detalhes, mesmo se NÃO houver conteúdo — deixará a página em branco
+                        findNavController().navigate(
+                            R.id.action_conteudos_to_detalhesConteudo,
+                            bundle
+                        )
+                    }
+
+                    configurarBotaoVerQuestoes(materia)
                 }
 
                 override fun onCancelled(error: DatabaseError) {}
             })
+    }
+
+    /**
+     * Ativa o botão "Ver Questões"
+     */
+    private fun configurarBotaoVerQuestoes(materia: String) {
+        btnVerQuestoes.visibility = View.VISIBLE
+
+        btnVerQuestoes.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("materia", materia)
+                putString("subtopico", "todos")
+            }
+
+            findNavController().navigate(
+                R.id.action_conteudos_to_questoesFragment,
+                bundle
+            )
+        }
     }
 }
