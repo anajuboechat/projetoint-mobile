@@ -136,7 +136,7 @@ class RegisterFragment : Fragment() {
                         avatar = ""
                     )
 
-                    findNavController().navigate(R.id.action_global_homeFragment)
+                    findNavController().navigate(R.id.action_global_selecionarVestibularesFragment)
 
                 } else {
                     Toast.makeText(requireContext(), task.exception?.message, Toast.LENGTH_SHORT).show()
@@ -172,7 +172,7 @@ class RegisterFragment : Fragment() {
                         avatar = avatar
                     )
 
-                    findNavController().navigate(R.id.action_global_homeFragment)
+                    findNavController().navigate(R.id.action_global_selecionarVestibularesFragment)
 
                 } else {
                     Toast.makeText(requireContext(), "Erro: ${task.exception?.message}", Toast.LENGTH_SHORT).show()

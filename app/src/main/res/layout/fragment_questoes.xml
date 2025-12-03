@@ -1,14 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QuestoesFragment">
+    android:background="@color/bg_app"
+    android:padding="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <!-- TÍTULO DO CONTEÚDO (primeira letra convertida no Kotlin) -->
+        <TextView
+            android:id="@+id/tvTituloConteudo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Genética"
+            android:textAlignment="center"
+            android:textSize="22sp"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:layout_marginBottom="6dp"/>
+
+        <!-- Questão X de Y   ✓n | ✗m -->
+        <TextView
+            android:id="@+id/tvInfoQuestoes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Questão 1 de 1   ✓0 | ✗0"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- CONTAINER DA QUESTÃO (card) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@color/question_card_bg"
+            android:elevation="2dp"
+            android:layout_marginBottom="18dp"
+            android:clipToPadding="false">
+
+            <TextView
+                android:id="@+id/tvTextoQuestao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/text_primary"
+                android:lineSpacingExtra="4dp"
+                android:text="Enunciado da questão..."
+                android:layout_marginBottom="4dp" />
+        </LinearLayout>
+
+        <!-- ALTERNATIVAS (infladas dinamicamente com item_alternativa.xml) -->
+        <LinearLayout
+            android:id="@+id/containerAlternativas"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!-- Botões de Navegação -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/btnAnterior"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="48dp"
+                android:text="Anterior"
+                android:background="@drawable/rounded_button_gray"
+                android:textColor="@color/text_primary"
+                android:layout_margin="6dp"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:ellipsize="none"
+                android:textSize="12sp"/>
+
+            <Button
+                android:id="@+id/btnConfirmar"
+                android:layout_width="0dp"
+                android:layout_weight="1.3"
+                android:layout_height="48dp"
+                android:text="Confirmar"
+                android:background="@drawable/btn_confirmar_selector"
+                android:textColor="@color/text_primary"
+                android:layout_margin="6dp"
+                android:enabled="false"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:ellipsize="none"
+                android:textSize="12sp"/>
+
+            <Button
+                android:id="@+id/btnProxima"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="48dp"
+                android:text="Próxima"
+                android:background="@drawable/rounded_button_gray"
+                android:textColor="@color/text_primary"
+                android:layout_margin="6dp"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:ellipsize="none"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

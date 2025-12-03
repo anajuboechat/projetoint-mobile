@@ -106,4 +106,15 @@ class MainActivity : AppCompatActivity() {
             }
         )
     }
+
+    fun hideBars() {
+        findViewById<View>(R.id.toolbar)?.visibility = View.GONE
+        findViewById<View>(R.id.navBar)?.visibility = View.GONE
+    }
+
+    fun showBars() {
+        findViewById<View>(R.id.toolbar)?.visibility = View.VISIBLE
+        findViewById<View>(R.id.navBar)?.visibility = View.VISIBLE
+    }
+
 }

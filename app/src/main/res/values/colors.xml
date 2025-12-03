@@ -24,4 +24,21 @@
     <color name="verde_pescuro">#4A5A2C</color>
     <color name="bege_claro">#F2F3D6</color>
     <color name="verde_radio">#6C8E3F</color>
+    <color name="verde_claro3">#459D2E</color>
+    <color name="bg_app">#F4F9E9</color>
+    <color name="text_primary">#0F1720</color>
+    <color name="text_secondary">#5A5A5A</color>
+    <color name="question_card_bg">#EAF3C4</color>
+    <color name="opcao_normal_bg">#C8E6C9</color>
+    <color name="opcao_selecionada_bg">#A5D6A7</color>
+    <color name="opcao_selecionada_stroke">#2E7D32</color>
+    <color name="opcao_errada_bg">#EF9A9A</color>
+    <color name="opcao_errada_stroke">#C62828</color>
+    <color name="circle_bg">#C8E6C9</color>
+    <color name="circle_stroke">#2E7D32</color>
+    <color name="letter_color">#1B5E20</color>
+    <color name="opcao_correta_bg">#4CAF50</color>
+    <color name="opcao_correta_stroke">#2E7D32</color>
+    <color name="vestibular_card_unselected">#CDE6B4</color>
+    <color name="vestibular_card_selected">#9CCB7E</color>
 </resources>

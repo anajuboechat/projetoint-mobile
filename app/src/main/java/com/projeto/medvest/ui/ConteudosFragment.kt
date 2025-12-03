@@ -87,7 +87,6 @@ class ConteudosFragment : Fragment() {
                             putString("subtopico", subtopico.nome)
                         }
 
-                        // Abre detalhes, mesmo se NÃO houver conteúdo — deixará a página em branco
                         findNavController().navigate(
                             R.id.action_conteudos_to_detalhesConteudo,
                             bundle
