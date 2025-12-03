@@ -94,29 +94,11 @@ class ConteudosFragment : Fragment() {
                         )
                     }
 
-                    configurarBotaoVerQuestoes(materia)
                 }
 
                 override fun onCancelled(error: DatabaseError) {}
             })
     }
 
-    /**
-     * Ativa o botão "Ver Questões"
-     */
-    private fun configurarBotaoVerQuestoes(materia: String) {
-        btnVerQuestoes.visibility = View.VISIBLE
 
-        btnVerQuestoes.setOnClickListener {
-            val bundle = Bundle().apply {
-                putString("materia", materia)
-                putString("subtopico", "todos")
-            }
-
-            findNavController().navigate(
-                R.id.action_conteudos_to_questoesFragment,
-                bundle
-            )
-        }
-    }
 }
