@@ -103,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:inputType="textPassword"
-                android:hint="Repita sua senha"
+                android:hint="@string/repita_sua_senha"
                 style="@style/EditTextTheme"
                 android:layout_marginTop="4dp"/>
 
@@ -136,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="12dp"
-                    android:text="ou"
+                    android:text="@string/ou1"
                     android:textColor="#555555"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/lineEnd"
@@ -177,7 +177,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Continue com Google"
+                    android:text="@string/continue_com_google2"
                     android:textColor="@color/palavras"
                     android:textSize="15sp"
                     android:textStyle="bold" />

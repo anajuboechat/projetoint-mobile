@@ -16,7 +16,7 @@
 
         <TextView
             android:id="@+id/bottomSheetTitle"
-            android:text="Título"
+            android:text="@string/titulo"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
@@ -24,7 +24,7 @@
 
         <TextView
             android:id="@+id/bottomSheetMessage"
-            android:text="Mensagem"
+            android:text="@string/mensagem2"
             android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
@@ -39,13 +39,13 @@
 
             <Button
                 android:id="@+id/bottomSheetCancel"
-                android:text="Cancelar"
+                android:text="@string/cancelar2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <Button
                 android:id="@+id/bottomSheetConfirm"
-                android:text="Confirmar"
+                android:text="@string/confirmar2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"/>

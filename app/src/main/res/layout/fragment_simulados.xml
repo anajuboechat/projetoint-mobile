@@ -15,7 +15,7 @@
         android:id="@+id/titleSimulados"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Simulados"
+        android:text="@string/simulados2"
         android:textSize="32sp"
         android:textStyle="bold"
         android:textColor="@color/palavras"
@@ -24,7 +24,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Escolha um vestibular para praticar:"
+        android:text="@string/escolha_um_vestibular_para_praticar"
         android:textColor="@color/palavras"
         android:textSize="16sp"
         android:layout_marginBottom="24dp" />

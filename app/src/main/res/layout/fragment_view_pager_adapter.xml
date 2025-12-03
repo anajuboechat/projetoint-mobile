@@ -10,7 +10,7 @@
         android:id="@+id/textProgresso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Card 1 de 10"
+        android:text="@string/card_1_de_10"
         android:textStyle="bold"
         android:textSize="18sp"/>
 
@@ -18,7 +18,7 @@
         android:id="@+id/textResumo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Acertos: 0 | Erros: 0"
+        android:text="@string/acertos_0_erros_0"
         android:layout_marginTop="6dp"
         android:textSize="16sp"/>
 
@@ -34,7 +34,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:textSize="20sp"
-            android:text="Frente"/>
+            android:text="@string/frente"/>
 
         <TextView
             android:id="@+id/textTras"
@@ -43,7 +43,7 @@
             android:gravity="center"
             android:textSize="20sp"
             android:visibility="gone"
-            android:text="Verso"/>
+            android:text="@string/verso"/>
     </FrameLayout>
 
     <LinearLayout
@@ -58,21 +58,21 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="50dp"
-            android:text="Difícil"/>
+            android:text="@string/dif_cil"/>
 
         <Button
             android:id="@+id/btnBom"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="50dp"
-            android:text="Bom"/>
+            android:text="@string/bom"/>
 
         <Button
             android:id="@+id/btnFacil"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="50dp"
-            android:text="Fácil"/>
+            android:text="@string/f_cil"/>
     </LinearLayout>
 
 </LinearLayout>

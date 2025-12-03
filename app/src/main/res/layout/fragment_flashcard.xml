@@ -22,7 +22,7 @@
         android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/btFechar"
-        android:text="0 / 0 respondidos"
+        android:text="@string/_0_0_respondidos"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="#3E603B" />
@@ -106,7 +106,7 @@
                 android:layout_width="140dp"
                 android:layout_height="55dp"
                 android:layout_marginEnd="8dp"
-                android:text="Errei"
+                android:text="@string/errei"
                 android:backgroundTint="@color/red_500"
                 android:textColor="@color/fundo" />
 
@@ -114,7 +114,7 @@
                 android:id="@+id/textErros"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Erros: 0"
+                android:text="@string/erros_0"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginTop="6dp" />
@@ -133,7 +133,7 @@
                 android:layout_width="140dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="8dp"
-                android:text="Acertei"
+                android:text="@string/acertei"
                 android:backgroundTint="@color/green_500"
                 android:textColor="@color/fundo" />
 
@@ -141,7 +141,7 @@
                 android:id="@+id/textAcertos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Acertos: 0"
+                android:text="@string/acertos_0"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginTop="6dp" />

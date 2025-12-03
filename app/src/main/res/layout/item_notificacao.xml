@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:text="05/05/2025"
+        android:text="@string/_05_05_2025"
         android:textColor="#555"
         android:textSize="12sp"
         android:paddingBottom="4dp" />
@@ -35,7 +35,7 @@
         android:layout_below="@id/txtData"
         android:background="@null"
         android:src="@drawable/cross"
-        android:contentDescription="Fechar notificação" />
+        android:contentDescription="@string/fechar_notifica_o" />
 
     <!-- Texto da notificação sem colidir com data/botão -->
     <TextView
@@ -52,6 +52,6 @@
         android:textColor="#000"
         android:maxLines="3"
         android:ellipsize="end"
-        android:text="Mais notificações" />
+        android:text="@string/mais_notifica_es" />
 
 </RelativeLayout>

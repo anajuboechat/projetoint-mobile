@@ -13,7 +13,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:gravity="center"
-        android:text="A"
+        android:text="@string/a2"
         android:textStyle="bold"
         android:textColor="#2E7D32"
         android:background="@drawable/circle_green"

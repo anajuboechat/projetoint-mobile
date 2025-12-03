@@ -10,7 +10,7 @@
         android:id="@+id/tituloMateria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Matéria"
+        android:text="@string/mat_ria"
         android:textSize="24sp"
         android:textStyle="bold"
         android:paddingBottom="16dp" />
@@ -26,7 +26,7 @@
         android:id="@+id/btnVerQuestoes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ver questões"
+        android:text="@string/ver_quest_es"
         android:padding="12dp"
         android:visibility="gone"
         android:layout_marginTop="16dp" />

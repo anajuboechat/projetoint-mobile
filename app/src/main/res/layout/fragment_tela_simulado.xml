@@ -49,7 +49,7 @@
 
                 <Button
                     android:id="@+id/btnAnterior"
-                    android:text="Anterior"
+                    android:text="@string/anterior2"
                     android:textColor="#FFF"
                     android:backgroundTint="@color/verde_pescuro"
                     android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
 
                 <Button
                     android:id="@+id/btnProxima"
-                    android:text="Próxima"
+                    android:text="@string/pr_xima2"
                     android:textColor="#FFF"
                     android:backgroundTint="@color/verde_pescuro"
                     android:layout_marginStart="12dp"
@@ -78,7 +78,7 @@
                     android:id="@+id/tituloQuestoes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Questões"
+                    android:text="@string/quest_es"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="8dp"

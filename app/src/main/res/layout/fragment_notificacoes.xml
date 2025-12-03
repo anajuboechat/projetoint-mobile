@@ -29,7 +29,7 @@
         android:id="@+id/txtSemNotificacoes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sem notificações no momento"
+        android:text="@string/sem_notifica_es_no_momento"
         android:textSize="16sp"
         android:padding="16dp"
         android:visibility="gone"
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_delete"
         android:background="@null"
-        android:contentDescription="Apagar tudo"
+        android:contentDescription="@string/apagar_tudo"
         android:padding="16dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />

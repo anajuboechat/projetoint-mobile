@@ -23,7 +23,7 @@
             android:id="@+id/btnIrParaQuestoes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ver questões desse subtópico"
+            android:text="@string/ver_quest_es_desse_subt_pico"
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:padding="12dp"

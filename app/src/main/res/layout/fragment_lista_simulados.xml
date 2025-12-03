@@ -15,7 +15,7 @@
             android:id="@+id/tituloListaSimulados"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Simulados"
+            android:text="@string/simulados"
             android:textColor="#333"
             android:textSize="32sp"
             android:textStyle="bold" />
@@ -24,7 +24,7 @@
             android:id="@+id/subtituloListaSimulados"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Escolha um simulado para começar:"
+            android:text="@string/escolha_um_simulado_para_come_ar"
             android:textColor="@color/subtitulo"
             android:textSize="16sp"
             android:layout_marginTop="8dp"/>
